@@ -1,28 +1,38 @@
 import React, { useState } from "react";
 import { BsArrowUpRight } from "react-icons/bs";
+import { Link } from "next/link";
+import { useRouter } from "next/router";
 
 const NavItems = () => {
+    const router = useRouter()
+
     const SWAP = "Swap";
     const POOL = "Pool";
     const VOTE = "Vote";
     const CHART = "Charts";
 
     const [selectedNavItem, setSelectedNavItem] = useState(SWAP);
+    
 
     return (
         <div className="bg-zinc-900 text-white h-fit flex items-center justify-around rounded-full mx-6">
-            <p
-                className={getNavIconClassName(SWAP)}
-                onClick={() => setSelectedNavItem(SWAP)}
-            >
-                {SWAP}
-            </p>
+        <p
+            className={getNavIconClassName(SWAP)}
+            onClick={() => router.push('/')}
+        >
+            {SWAP}
+        </p>
+
             <p
                 className={getNavIconClassName(POOL)}
-                onClick={() => setSelectedNavItem(POOL)}
+                onClick={() => {
+                    setSelectedNavItem(POOL)
+                    router.push('/pool');
+                }}
             >
                 {POOL}
             </p>
+           
             <p
                 className={getNavIconClassName(VOTE)}
                 onClick={() => setSelectedNavItem(VOTE)}

@@ -22,7 +22,6 @@ export default function Home() {
   console.log("provider", provider);
 
 
-
   return (
     <div className="bg-black h-screen">
       <main className={styles.main}>
