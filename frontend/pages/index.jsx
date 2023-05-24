@@ -3,7 +3,7 @@ import styles from "../styles/Home.module.css";
 import { useEffect, useState } from "react";
 import { ethers } from "ethers";
 import { useAccount, Provider, useProvider, useContract, useSigner } from 'wagmi'
-
+import { SwapContainer } from "../components/SwapContainer";
 
 
 export default function Home() {
@@ -23,11 +23,12 @@ export default function Home() {
 
 
   return (
-    <div className="bg-black h-screen">
+    // bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-amber-700 via-orange-300 to-rose-800
+    <div className="h-screen bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-[#affc41] via-[#192e01] to-black">
       <main className={styles.main}>
         {/* <InstructionsComponent>
         </InstructionsComponent> */}
-
+        <SwapContainer />
       </main>
     </div>
   );
