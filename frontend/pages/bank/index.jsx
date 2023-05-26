@@ -112,7 +112,7 @@ const BankPage = () => {
     const offRamp = async (options) => {
         await clientAuth();
 
-        // if (!this.client) return;
+        // if (!this.client) return;e 
 
         const order = await client.placeOrder({
             chain: Chain.gnosis,
