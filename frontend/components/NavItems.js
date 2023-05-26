@@ -10,6 +10,7 @@ const NavItems = () => {
     const POOL = "Pool";
     const VOTE = "Vote";
     const CHART = "Charts";
+    const BANK = "Bank";
 
     const [selectedNavItem, setSelectedNavItem] = useState(SWAP);
     
@@ -45,6 +46,16 @@ const NavItems = () => {
             >
                 {CHART}
                 <BsArrowUpRight className="h-2 font-bold rotate-30" />
+            </p>
+
+            <p
+                className={getNavIconClassName(BANK)}
+                onClick={() => {
+                    setSelectedNavItem(BANK)
+                    router.push('/bank');
+                }}
+            >
+                {POOL}
             </p>
         </div>
     );

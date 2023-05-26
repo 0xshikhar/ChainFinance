@@ -1,10 +1,58 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import BankTransfer from '../../components/BankTransfer'
 import { useAccount, useBalance, useNetwork } from 'wagmi'
 import { BigNumber, ethers } from "ethers";
 import { EURE_TOKEN_ADDRESS } from "../../constants";
 import { useForm } from "react-hook-form";
+
 import { CopyButton } from '../../components/CopyButton';
+import { Input } from "../../components/basic/input";
+import { Button } from "../../components/basic/button";
+import {
+    MoneriumClient, Chain,
+    Network,
+    PaymentStandard,
+    OrderKind,
+    Currency,
+} from '@monerium/sdk';
+
+const client = new MoneriumClient("sandbox");
+
+// async function clientAuth() {
+//     try {
+//         await client.auth({
+//             client_id: "19a510a0-fcd0-11ed-9fe1-1e82d6c6448a",
+//             client_secret: "65c24138592737cbe4190539d9cbb93d33110bae05ee0dfc22f9bda1c603814c"
+//         });
+//         await client.getAuthContext();
+//         console.log("client", client);
+
+//         // const balances = await client.getBalances();
+//         // console.log("balances", balances)
+//         // const orders = await client.getOrders();
+//         // console.log("orders", orders)
+//         // const order = await client.getOrder("0x1234");
+//         // const tokens = await client.getTokens();
+//         // console.log("tokens", tokens)
+
+//         // const bearerProfile = await client.bearerProfile
+//         // console.log("bearerProfile", bearerProfile)
+
+//         // const profile = await client.getProfile("d88499e4-0773-11ed-8b1f-4a76448b7b21");
+//         // console.log("profile", profile)
+
+//         // const linkAddress = await client.linkAddress("19a510a0-fcd0-11ed-9fe1-1e82d6c6448a",);
+//         // console.log("linkAddress", linkAddress)
+
+//         // const placeOrder = await client.placeOrder();
+//         // console.log("placeOrder", placeOrder)
+
+//     }
+//     catch (error) {
+//         console.log(error);
+//     }
+// }
+
 
 
 const BalanceBanner = ({ daiBalance, eureBalance }) => {
@@ -29,7 +77,14 @@ const BalanceBanner = ({ daiBalance, eureBalance }) => {
 };
 
 const BankPage = () => {
-    // const { offRamp } = useOnRamp();
+    // // const { offRamp } = useOnRamp();
+    // const client = new MoneriumClient("sandbox");
+
+    // // create use effect with async function to call clientAuth
+    // useEffect(() => {
+    //     clientAuth();
+    // }, []);
+
 
     const { address } = useAccount();
     const { chain } = useNetwork();
@@ -43,45 +98,94 @@ const BankPage = () => {
     console.log("daiBalance", daiBalance)
     console.log("eureBalance", eureBalance)
 
+    const {
+        register,
+        handleSubmit,
+        formState: { errors, isSubmitting },
+        reset,
+    } = useForm({
+        defaultValues: {
+            iban: "GR1601101250000000012300695",
+        },
+    });
+
+    const offRamp = async (options) => {
+        await clientAuth();
+
+        // if (!this.client) return;
+
+        const order = await client.placeOrder({
+            chain: Chain.gnosis,
+            network: Network.chiado,
+            message: options.message,
+            signature: options.signature,
+            address: options.address,
+            amount: options.amount.toString(),
+            kind: OrderKind.redeem,
+            memo: "",
+            currency: Currency.eur,
+            counterpart: {
+                details: {
+                    firstName: "Test",
+                    lastName: "Test",
+                },
+                identifier: {
+                    standard: PaymentStandard.iban,
+                    iban: options.iban,
+                },
+            },
+        });
+
+        console.log("Order: ", order);
+    }
+
+
     const onSubmit = handleSubmit(async (data) => {
         await offRamp(data.iban, Number(data.amount));
+
         await refetch();
         reset();
     });
 
     return (
-        <div>
-            <h1>Bank Transfer</h1>
-            <h3>Swap Section</h3>
-
+        <div className='h-screen'>
             {/* <BalanceBanner daiBalance={daiBalance?.value} eureBalance={eureBalance?.value} /> */}
 
             {/* <BalanceBanner
           daiBalance={daiBalance?.value || BigNumber.from(0)}
           eureBalance={eureBalance?.value || BigNumber.from(0)}
         /> */}
+        <BankTransfer />
 
 
             {/* giving option for token of choice */}
             {/* <BankTransfer /> */}
-            <div className='flex align-middle justify-center'>
-                <div className='bg-green'>
-                    <div className='pt-4 px-4'>
+            <div className='flex align-middle justify-center rounded'>
+                <div className='bg-[#affc41] rounded-2xl'>
+                    <div className='pt-4 px-4 rounded'>
                         <h1 className="text-4xl text-white py-4  font-sans">
                             Hey ! 👋
                         </h1>
                         <h2 className="text-base text-white py-2 pb-10 font-sans "> Its time to secure you !</h2>
                     </div>
 
-                    <div className='bg-white rounded-[16px] object-contain w-[500px] h-[400px] relative'>
+                    <div className='bg-white text-black rounded-[16px] object-contain w-[500px] h-[400px] relative'>
                         <div className="flex h-full items-center justify-center px-4 inset-x-0 bottom-0">
                             <div className="w-full">
-                                <h2 className="text-2xl font-bold mt-8 mb-4">Buy crypto</h2>
                                 {/* <IbanBanner /> */}
 
                                 <h2 className="text-2xl font-bold mb-4 mt-8">Sell crypto</h2>
                                 <p>Convert your EURe to euros in your bank account</p>
                                 <form className="flex flex-col gap-2 mt-4 w-full" onSubmit={onSubmit}>
+
+                                    <div className='text-white'>
+                                        <label className="text-black font-bold">Select token</label>
+                                        <select {...register("token")}>
+                                            <option value="eure">EURe</option>
+                                            <option value="xdai">xDAI</option>
+                                            <option value="ether">Ether</option>
+                                        </select>
+                                    </div>
                                     <Input
                                         className="flex-1"
                                         label="Enter your IBAN"
@@ -112,15 +216,14 @@ const BankPage = () => {
                                     </Button>
                                 </form>
 
-                                <div>
-                                    {/* <img src={uri} width="100%" alt="flux wallet qr code" /> */}
+                                {/* <div>
                                     <div className='px-6 text-center'>
                                         <input type="String" placeholder="Enter Verification Code" className="input input-bordered w-full max-w-xs" />
                                     </div>
                                     <div className='py-2 items-center justify-center text-center'>
                                         <label htmlFor="my-modal-6" className="btn" >Verify</label>
                                     </div>
-                                </div>
+                                </div> */}
 
                             </div>
                         </div>
