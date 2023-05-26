@@ -15,12 +15,43 @@ const BankTransfer = () => {
     const { address } = useAccount();
     const { signMessageAsync } = useSignMessage();
 
-    const [amount, setAmount] = useState("");
-    const [iban, setIban] = useState("");
+    const [amount, setAmount] = useState("0");
+    const [iban, setIban] = useState("IBAN No.");
 
     console.log("monerium client", client)
 
     const options = {};
+
+    async function getIban() {
+        if (!this.client) return;
+
+        const context = await this.client.getAuthContext();
+        const profileId = context.profiles[0].id;
+        const profile = await this.client.getProfile(profileId);
+
+        const account = profile.accounts.find(
+            (account) =>
+                account.chain === "gnosis" &&
+                account.standard === "iban" &&
+                account.network === "chiado"
+        );
+
+        return account?.iban;
+    }
+
+    function getRefreshToken(address) {
+        return localStorage.getItem(`monerium-refresh-token-${address}`);
+    }
+
+    function saveRefreshToken(address) {
+        if (!client) return;
+
+        localStorage.setItem(
+            `monerium-refresh-token-${address}`,
+            client.bearerProfile?.refresh_token || ""
+        );
+    }
+
 
 
     const clientAuth = async () => {
@@ -31,6 +62,23 @@ const BankTransfer = () => {
         });
         await client.getAuthContext();
         console.log("client", client);
+
+        // Get refresh token from local storage    
+        const savedRefreshToken = getRefreshToken(address || "");
+
+        if (savedRefreshToken) {
+            await this.client.auth({
+                client_id: MONERIUM_CLIENT_ID,
+                refresh_token: savedRefreshToken,
+            });
+
+            // Get user data
+            setIban(await getIban());
+
+            // Save refresh token to local storage
+            this.saveRefreshToken(address || "");
+
+        }
 
         // const order = await client.placeOrder({
         //     chain: "gnosis",
@@ -91,7 +139,7 @@ const BankTransfer = () => {
         try {
             const order = await client.placeOrder({
                 chain: "gnosis",
-                network: "chaido",
+                network: "chiado",
                 message: "hi",
                 signature: signature,
                 address: address,
