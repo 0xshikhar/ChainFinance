@@ -55,7 +55,7 @@ const NavItems = () => {
                     router.push('/bank');
                 }}
             >
-                {POOL}
+                {BANK}
             </p>
         </div>
     );

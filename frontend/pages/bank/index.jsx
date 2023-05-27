@@ -98,54 +98,7 @@ const BankPage = () => {
     console.log("daiBalance", daiBalance)
     console.log("eureBalance", eureBalance)
 
-    const {
-        register,
-        handleSubmit,
-        formState: { errors, isSubmitting },
-        reset,
-    } = useForm({
-        defaultValues: {
-            iban: "GR1601101250000000012300695",
-        },
-    });
 
-    const offRamp = async (options) => {
-        await clientAuth();
-
-        // if (!this.client) return;e 
-
-        const order = await client.placeOrder({
-            chain: Chain.gnosis,
-            network: Network.chiado,
-            message: options.message,
-            signature: options.signature,
-            address: options.address,
-            amount: options.amount.toString(),
-            kind: OrderKind.redeem,
-            memo: "",
-            currency: Currency.eur,
-            counterpart: {
-                details: {
-                    firstName: "Test",
-                    lastName: "Test",
-                },
-                identifier: {
-                    standard: PaymentStandard.iban,
-                    iban: options.iban,
-                },
-            },
-        });
-
-        console.log("Order: ", order);
-    }
-
-
-    const onSubmit = handleSubmit(async (data) => {
-        await offRamp(data.iban, Number(data.amount));
-
-        await refetch();
-        reset();
-    });
 
     return (
         <div className='h-screen'>
@@ -160,7 +113,8 @@ const BankPage = () => {
 
             {/* giving option for token of choice */}
             {/* <BankTransfer /> */}
-            <div className='flex align-middle justify-center rounded'>
+
+            {/* <div className='flex align-middle justify-center rounded'>
                 <div className='bg-[#affc41] rounded-2xl'>
                     <div className='pt-4 px-4 rounded'>
                         <h1 className="text-4xl text-white py-4  font-sans">
@@ -172,7 +126,6 @@ const BankPage = () => {
                     <div className='bg-white text-black rounded-[16px] object-contain w-[500px] h-[400px] relative'>
                         <div className="flex h-full items-center justify-center px-4 inset-x-0 bottom-0">
                             <div className="w-full">
-                                {/* <IbanBanner /> */}
 
                                 <h2 className="text-2xl font-bold mb-4 mt-8">Sell crypto</h2>
                                 <p>Convert your EURe to euros in your bank account</p>
@@ -224,16 +177,6 @@ const BankPage = () => {
                                         <label htmlFor="my-modal-6" className="btn" >Verify</label>
                                     </div>
                                 </div> */}
-
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-
-
         </div>
     )
 }
