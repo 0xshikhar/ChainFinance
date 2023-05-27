@@ -17,8 +17,8 @@ const BankTransfer = () => {
     const { address } = useAccount();
     const { signMessageAsync } = useSignMessage();
 
-    const [amount, setAmount] = useState("0");
-    const [iban, setIban] = useState("IBAN No.");
+    const [amount, setAmount] = useState("1");
+    const [iban, setIban] = useState("IS39 4980 5411 0230 0201 4720 37");
 
     console.log("monerium client", client)
 
