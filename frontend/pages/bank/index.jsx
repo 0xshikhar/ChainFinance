@@ -5,9 +5,6 @@ import { BigNumber, ethers } from "ethers";
 import { EURE_TOKEN_ADDRESS } from "../../constants";
 import { useForm } from "react-hook-form";
 
-import { CopyButton } from '../../components/CopyButton';
-import { Input } from "../../components/basic/input";
-import { Button } from "../../components/basic/button";
 import {
     MoneriumClient, Chain,
     Network,
@@ -86,18 +83,6 @@ const BankPage = () => {
     // }, []);
 
 
-    const { address } = useAccount();
-    const { chain } = useNetwork();
-
-    const { data: eureBalance } = useBalance({ token: EURE_TOKEN_ADDRESS[chain?.id ?? 31337], address });
-
-    const { data: daiBalance } = useBalance({
-        address,
-    });
-
-    console.log("daiBalance", daiBalance)
-    console.log("eureBalance", eureBalance)
-
 
 
     return (
@@ -108,7 +93,7 @@ const BankPage = () => {
           daiBalance={daiBalance?.value || BigNumber.from(0)}
           eureBalance={eureBalance?.value || BigNumber.from(0)}
         /> */}
-        <BankTransfer />
+            <BankTransfer />
 
 
             {/* giving option for token of choice */}
