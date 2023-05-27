@@ -48,7 +48,7 @@ const NavItems = () => {
                 <BsArrowUpRight className="h-2 font-bold rotate-30" />
             </p>
 
-            <p
+            <div
                 className={getNavIconClassName(BANK)}
                 onClick={() => {
                     setSelectedNavItem(BANK)
@@ -59,12 +59,12 @@ const NavItems = () => {
                     <label tabIndex={0} className=""> {BANK}</label>
                     <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
                         <li>
-                            <a href="/bank/account">Item 1</a></li>
-                        <li><a href="/bank/pay">Item 2</a></li>
+                            <a href="/bank/account">Account</a></li>
+                        <li><a href="/bank/pay">Payment</a></li>
                     </ul>
                 </div>
 
-            </p>
+            </div>
         </div>
     );
 

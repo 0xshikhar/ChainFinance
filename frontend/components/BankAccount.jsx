@@ -10,9 +10,9 @@ import { useAccount, useSignMessage, useNetwork, useBalance } from 'wagmi';
 import { set } from 'react-hook-form';
 import { EURE_TOKEN_ADDRESS } from "../constants";
 import { TokenBalance } from './TokenBalance';
-import { CopyButton } from '../components/CopyButton';
+import { CopyButton } from './CopyButton';
 // import { Input } from "../components/basic/input";
-import { Button } from "../components/basic/button";
+import { Button } from "./basic/button";
 import cx from "classnames";
 
 // const client = new MoneriumClient("sandbox");
@@ -21,8 +21,8 @@ const IbanBanner = () => {
     return (
         <div className={cx("bg-secondary/20 px-4 py-4 gap-4 flex flex-col items-center")}>
             <div>
-                <p>Get crypto by sending a bank transfer to this IBAN</p>
-                <p className="text-center mt-2">
+                <div>Get crypto by sending a bank transfer to this IBAN</div>
+                <div className="text-center mt-2">
                     <div className="flex gap-2 items-center">
                         <span className="font-bold text-xl">iban</span>
                         {/* <CopyButton
@@ -32,7 +32,7 @@ const IbanBanner = () => {
                             variant="outline"
                         /> */}
                     </div>
-                </p>
+                </div>
                 <a
                     href="https://sandbox.monerium.dev/mockbank"
                     target="_blank"
@@ -42,17 +42,17 @@ const IbanBanner = () => {
                     <Button>Send bank transfer</Button>
                 </a>
             </div>
-            <p className="text-center">
+            <div className="text-center">
                 Create an IBAN to simplify your experience on Gumrua. As a buyer,
                 you can obtain crypto by simply sending a bank transfer to this
                 IBAN.
-            </p>
-            <Button onClick={connect}>Create IBAN</Button>
+            </div>
+            <Button >Create IBAN</Button>
         </div>
     )
 }
 
-const BankTransfer = () => {
+const BankAccount = () => {
     // const client = new MoneriumClient("sandbox");
     const [client, setClient] = useState(null);
 
@@ -211,7 +211,7 @@ const BankTransfer = () => {
                                     <IbanBanner />
                                     {/*  */}
                                     <div>
-                                        <p className='text-lg'>Token Balance</p>
+                                        <div className='text-lg'>Token Balance</div>
                                         <TokenBalance />
                                     </div>
 
@@ -262,7 +262,7 @@ const BankTransfer = () => {
                                             <label htmlFor="tokens" className="block mb-2 text font-medium text-gray-900">Enter Amount</label>
                                             <input type="text" onChange={(event) => { setAmount(event.target.value) }} id="input-amount" className="shadow-sm bg-gray-800 border border-gray-300 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="0 EURe" required />
                                         </div>
-                                        <p className="mb-4 m-1 text-sm">Token will be transferred as Euro on your Bank Account</p>
+                                        <div className="mb-4 m-1 text-sm">Token will be transferred as Euro on your Bank Account</div>
 
                                         <button type="submit" onClick={sendMoney}
                                             className="text-white w-full bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Send Money</button>
@@ -282,4 +282,4 @@ const BankTransfer = () => {
     )
 }
 
-export default BankTransfer;
+export default BankAccount;

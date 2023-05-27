@@ -14,12 +14,11 @@ export default function Home() {
   // const [contract, setContract] = useState(null);
 
   const { address, disconnect, isConnected } = useAccount()
-  console.log("account", address, "isConnected", isConnected);
 
   const provider = useProvider();
   const { data: signer, isError, isLoading } = useSigner();
-  console.log("signer", signer, "isError", isError, "isLoading", isLoading);
-  console.log("provider", provider);
+  // console.log("signer", signer, "isError", isError, "isLoading", isLoading);
+  // console.log("provider", provider);
 
 
   return (
