@@ -93,12 +93,13 @@ const BankTransfer = () => {
 
         const message = `Send EUR ${amount} to ${iban} at ${new Date().toISOString()}`;
         const signature = await signMessageAsync({ message });
+        console.log("message", message, "signature", signature);
 
         try {
             const order = await client.placeOrder({
-                chain: Chain.gnosis,
-                network: Network.chiado,
-                message: "hi",
+                chain: "gnosis",
+                network: "chiado",
+                message: "Hi from GNO Finance",
                 signature: signature,
                 address: address,
                 amount: "1",
@@ -107,7 +108,7 @@ const BankTransfer = () => {
                 currency: Currency.eur,
                 counterpart: {
                     details: {
-                        firstName: "Test",
+                        firstName: "Test User",
                         lastName: "User",
                     },
                     identifier: {
