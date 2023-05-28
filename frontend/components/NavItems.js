@@ -15,7 +15,7 @@ const NavItems = () => {
 
 
     return (
-        <div className="bg-zinc-900 text-white h-fit flex items-center justify-around rounded-full mx-6">
+        <div className="bg-zinc-800 text-white h-fit flex items-center justify-around rounded-full mx-6">
             <p
                 className={getNavIconClassName(SWAP)}
                 onClick={() => router.push('/')}

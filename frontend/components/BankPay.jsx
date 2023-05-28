@@ -164,27 +164,27 @@ const BankPay = () => {
                                                 <div className="my-2">
                                                     <label htmlFor="text"
                                                         className="block mb-2 text font-medium text-gray-900"> First Name</label>
-                                                    <input type="text" id="input-recepient" onChange={(event) => { setFirstname(event.target.value) }} 
-                                                    className="shadow-sm bg-gray-800 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Mark" required />
+                                                    <input type="text" id="input-recepient" onChange={(event) => { setFirstname(event.target.value) }}
+                                                        className="shadow-sm bg-gray-800 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 text-white dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Mark" required />
                                                 </div>
                                                 <div className="my-2">
                                                     <label htmlFor="text"
                                                         className="block mb-2 text font-medium text-gray-900"> Last Name</label>
-                                                    <input type="text" id="input-recepient" onChange={(event) => { setLastname(event.target.value) }} className="shadow-sm bg-gray-800 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Newton" required />
+                                                    <input type="text" id="input-recepient" onChange={(event) => { setLastname(event.target.value) }} className="shadow-sm bg-gray-800 border border-gray-300 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Newton" required />
                                                 </div>
 
                                                 <div className="my-2">
                                                     <label htmlFor="text"
                                                         className="block mb-2 text font-medium text-gray-900">Enter Your IBAN</label>
-                                                    <input type="text" id="input-recepient" onChange={(event) => { setIban(event.target.value) }} className="shadow-sm bg-gray-800 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="IS39 4980 5411 0230 0201 4720 37" required />
+                                                    <input type="text" id="input-recepient" onChange={(event) => { setIban(event.target.value) }} className="shadow-sm bg-gray-800 border border-gray-300 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="IS39 4980 5411 0230 0201 4720 37" required />
                                                 </div>
 
                                             </div>
                                             <div className='px-2  w-[400px]'>
                                                 <div className="my-2">
                                                     <label htmlFor="text"
-                                                        className="block mb-2 text font-medium text-gray-900">  Message </label>
-                                                    <input type="text" id="input-recepient" onChange={(event) => { setUsermessage(event.target.value) }} className="shadow-sm bg-gray-800 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="For the last month payment" required />
+                                                        className="block mb-2 text font-medium text-gray-900">  SignIn Message </label>
+                                                    <input type="text" id="input-recepient" onChange={(event) => { setUsermessage(event.target.value) }} className="shadow-sm bg-gray-800 border border-gray-300 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Enter any message for authenciation" required />
                                                 </div>
                                                 <div >
                                                     <label htmlFor="tokens" className="block mb-2 text font-medium text-gray-900">Enter Amount</label>
@@ -193,8 +193,8 @@ const BankPay = () => {
 
                                                 <div className="my-2">
                                                     <label htmlFor="text"
-                                                        className="block mb-2 text font-medium text-gray-900"> Memo/Response To Reciever</label>
-                                                    <input type="text" id="input-recepient" onChange={(event) => { setMemo(event.target.value) }} className="shadow-sm bg-gray-800 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Rent" required />
+                                                        className="block mb-2 text font-medium text-gray-900"> Memo</label>
+                                                    <input type="text" id="input-recepient" onChange={(event) => { setMemo(event.target.value) }} className="shadow-sm bg-gray-800 border border-gray-300 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="For last month rent by Mr.Mark" required />
                                                 </div>
                                             </div>
                                         </div>

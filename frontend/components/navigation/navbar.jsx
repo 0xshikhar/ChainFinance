@@ -5,7 +5,7 @@ import NavItems from "../NavItems";
 export default function Navbar() {
 	return (
 		<nav className={styles.navbar}>
-			<a href="https://alchemy.com/?a=create-web3-dapp" target={"_blank"}>
+			<a href="/">
 				<img className={styles.logo} src="/gnof-lm.png"></img>
 			</a>
 			<div>
