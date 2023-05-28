@@ -9,13 +9,30 @@ import {
 import { useAccount, useSignMessage, useNetwork, useBalance } from 'wagmi';
 import { set } from 'react-hook-form';
 import { EURE_TOKEN_ADDRESS } from "../constants";
+import { ethers, BigNumber } from "ethers";
 import { TokenBalance } from './TokenBalance';
 import { CopyButton } from './CopyButton';
 // import { Input } from "../components/basic/input";
 import { Button } from "./basic/button";
 import cx from "classnames";
 
-// const client = new MoneriumClient("sandbox");
+const BalanceBanner = ({ daiBalance, eureBalance }) => {
+    return (
+        <div className="bg-blue-100 rounded-xl  px-4 py-4 flex flex-col justify-center gap-4 mb-4">
+            <div>
+                xDAI Balance:  {Number(ethers.utils.formatEther(daiBalance)).toPrecision(4)}
+            </div>
+            <div>
+                EURe Balance:  {ethers.utils.formatEther(eureBalance)}
+            </div>
+            <div>
+                Ether Balance:  0.0
+            </div>
+        </div>
+    );
+};
+
+
 const IbanBanner = () => {
 
     return (
@@ -23,11 +40,13 @@ const IbanBanner = () => {
             <div className='align-middle justify-center'>
                 <div className="text-center">
                     Create an IBAN to obtain crypto by sending a bank transfer.
-                    IBAN.
+
                 </div>
 
-                <button className="text-black w-full bg-[#027DFC] hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"> Create IBAN
+                <a href="https://sandbox.monerium.dev/accounts/">
+                    <button className="text-black w-full bg-[#027DFC] hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"> Create IBAN
                     </button>
+                </a>
             </div>
             <div>
                 <div>Get crypto by sending a bank transfer to this IBAN</div>
@@ -59,6 +78,7 @@ const BankAccount = () => {
     // const client = new MoneriumClient("sandbox");
     const [client, setClient] = useState(null);
 
+    const { chain } = useNetwork();
     const { address } = useAccount();
     const { signMessageAsync } = useSignMessage();
 
@@ -66,6 +86,9 @@ const BankAccount = () => {
     const [iban, setIban] = useState("IS39 4980 5411 0230 0201 4720 37");
 
     const options = {};
+
+    const { data: eureBalance } = useBalance({ token: EURE_TOKEN_ADDRESS[chain?.id ?? 31337], address });
+    const { data: daiBalance } = useBalance({ address });
 
 
 
@@ -214,10 +237,13 @@ const BankAccount = () => {
                                     {/*  */}
                                     <div>
                                         <div className='text-lg'>Token Balance</div>
-                                        <TokenBalance />
+                                        <BalanceBanner
+                                            daiBalance={daiBalance?.value || BigNumber.from(0)}
+                                            eureBalance={eureBalance?.value || BigNumber.from(0)}
+                                        />
                                     </div>
                                     <div className='py-2'>
-                                    <IbanBanner />
+                                        <IbanBanner />
 
                                     </div>
                                 </div>

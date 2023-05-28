@@ -47,7 +47,9 @@ const IbanBanner = () => {
                 you can obtain crypto by simply sending a bank transfer to this
                 IBAN.
             </div>
-            <Button >Create IBAN</Button>
+            <a href="https://sandbox.monerium.dev/accounts/6e71b029-fac7-11ed-9fe1-1e82d6c6448a">
+                <Button >Create IBAN</Button>
+            </a>
         </div>
     )
 }
