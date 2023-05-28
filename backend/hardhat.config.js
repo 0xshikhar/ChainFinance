@@ -3,11 +3,16 @@ require('dotenv').config()
 
 module.exports = {
 	solidity: {
-		version: "0.6.6",
+		version: "0.8.18",
 		settings: {
 			optimizer: {
-				enabled: true
-			}
+				enabled: true,
+				runs: 200,
+				details: {
+					yul: true,
+				}
+			},
+			viaIR: true,
 		}
 	},
 	allowUnlimitedContractSize: true,

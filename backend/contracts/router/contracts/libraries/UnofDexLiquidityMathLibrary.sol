@@ -48,7 +48,7 @@ library UnofDexLiquidityMathLibrary {
         uint256 truePriceTokenB
     ) view internal returns (uint256 reserveA, uint256 reserveB) {
         // first get reserves before the swap
-        (reserveA, reserveB) = UniswapV2Library.getReserves(factory, tokenA, tokenB);
+        (reserveA, reserveB) = UnofDexLibrary.getReserves(factory, tokenA, tokenB);
 
         require(reserveA > 0 && reserveB > 0, 'UniswapV2ArbitrageLibrary: ZERO_PAIR_RESERVES');
 
@@ -61,11 +61,11 @@ library UnofDexLiquidityMathLibrary {
 
         // now affect the trade to the reserves
         if (aToB) {
-            uint amountOut = UniswapV2Library.getAmountOut(amountIn, reserveA, reserveB);
+            uint amountOut = UnofDexLibrary.getAmountOut(amountIn, reserveA, reserveB);
             reserveA += amountIn;
             reserveB -= amountOut;
         } else {
-            uint amountOut = UniswapV2Library.getAmountOut(amountIn, reserveB, reserveA);
+            uint amountOut = UnofDexLibrary.getAmountOut(amountIn, reserveB, reserveA);
             reserveB += amountIn;
             reserveA -= amountOut;
         }
@@ -103,8 +103,8 @@ library UnofDexLiquidityMathLibrary {
         address tokenB,
         uint256 liquidityAmount
     ) internal view returns (uint256 tokenAAmount, uint256 tokenBAmount) {
-        (uint256 reservesA, uint256 reservesB) = UniswapV2Library.getReserves(factory, tokenA, tokenB);
-        IUniswapV2Pair pair = IUniswapV2Pair(UniswapV2Library.pairFor(factory, tokenA, tokenB));
+        (uint256 reservesA, uint256 reservesB) = UnofDexLibrary.getReserves(factory, tokenA, tokenB);
+        IUniswapV2Pair pair = IUniswapV2Pair(UnofDexLibrary.pairFor(factory, tokenA, tokenB));
         bool feeOn = IUniswapV2Factory(factory).feeTo() != address(0);
         uint kLast = feeOn ? pair.kLast() : 0;
         uint totalSupply = pair.totalSupply();
@@ -125,7 +125,7 @@ library UnofDexLiquidityMathLibrary {
         uint256 tokenBAmount
     ) {
         bool feeOn = IUniswapV2Factory(factory).feeTo() != address(0);
-        IUniswapV2Pair pair = IUniswapV2Pair(UniswapV2Library.pairFor(factory, tokenA, tokenB));
+        IUniswapV2Pair pair = IUniswapV2Pair(UnofDexLibrary.pairFor(factory, tokenA, tokenB));
         uint kLast = feeOn ? pair.kLast() : 0;
         uint totalSupply = pair.totalSupply();
 
