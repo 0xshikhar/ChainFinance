@@ -9,7 +9,8 @@ const NavItems = () => {
     const SWAP = "Swap";
     const POOL = "Pool";
     const VOTE = "Vote";
-    const BANK = "Bank";
+    const BANK = "Bank Payment";
+    const ACCOUNT = "Account"
 
     const [selectedNavItem, setSelectedNavItem] = useState(SWAP);
 
@@ -40,23 +41,42 @@ const NavItems = () => {
                 {VOTE}
             </p>
 
-            <div
+            {/* <div
                 className={getNavIconClassName(BANK)}
                 onClick={() => {
                     setSelectedNavItem(BANK)
                     // router.push('/bank');
                 }}
-            >
-                <div className="dropdown dropdown-hover">
+            > */}
+            {/* <div className="dropdown dropdown-hover">
                     <label tabIndex={0} className=""> {BANK}</label>
                     <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-black rounded-box w-52">
                         <li>
                             <a href="/bank/account">Account</a></li>
                         <li><a href="/bank/pay">Payment</a></li>
                     </ul>
-                </div>
+                </div> 
+                </div> */}
+            <p
+                className={getNavIconClassName(BANK)}
+                onClick={() => {
+                    setSelectedNavItem(BANK)
+                    router.push('/bank/pay');
+                }}
+            >
+                {BANK}
+            </p>
+            <p
+                className={getNavIconClassName(ACCOUNT)}
+                onClick={() => {
+                    setSelectedNavItem(ACCOUNT)
+                    router.push('/bank/account');
+                }}
+            >
+                {ACCOUNT}
+            </p>
 
-            </div>
+
         </div>
     );
 

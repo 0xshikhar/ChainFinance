@@ -10,8 +10,13 @@
 		"marketplace": "npx create-web3-dapp marketplace"
 	},
 	"dependencies": {
+		"@headlessui/react": "^1.7.15",
+		"@heroicons/react": "^1.0.6",
 		"@monerium/sdk": "^2.4.1",
+		"@nextui-org/react": "^1.0.0-beta.13",
 		"@rainbow-me/rainbowkit": "^0.12.4",
+		"@requestnetwork/request-client.js": "^0.40.1-next.1898",
+		"@requestnetwork/web3-signature": "^0.4.37-next.1898",
 		"@uniswap/default-token-list": "^10.0.0",
 		"@uniswap/sdk": "^3.0.3",
 		"@uniswap/sdk-core": "^3.2.2",
@@ -30,7 +35,8 @@
 		"react-icons": "^4.8.0",
 		"react-spinners": "^0.13.8",
 		"tailwind-merge": "^1.12.0",
-		"wagmi": "^0.12.6"
+		"wagmi": "^0.12.6",
+		"web3": "^1.10.0"
 	},
 	"devDependencies": {
 		"autoprefixer": "^10.4.14",
