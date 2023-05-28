@@ -1,12 +1,12 @@
 const hre = require("hardhat");
 
 async function main() {
-	const Contract = await hre.ethers.getContractFactory("GNOtoken");
+	const Contract = await hre.ethers.getContractFactory("NoDelegateCall");
 	const contract = await Contract.deploy();
 
 	await contract.deployed();
 
-	console.log("GNOtoken deployed to:", contract.address);
+	console.log("NoDelegateCall:", contract.address);
 }
 
 main().catch((error) => {

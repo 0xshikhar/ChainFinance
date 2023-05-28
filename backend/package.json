@@ -10,8 +10,10 @@
 		"deploy-local": "npx hardhat run ./scripts/GNOtoken_deploy.js --network localhost"
 	},
 	"dependencies": {
+		"@openzeppelin/contracts": "^4.7.3",
+		"@uniswap/v3-periphery": "^1.4.3",
 		"dotenv": "^16.0.2",
-		"@openzeppelin/contracts": "^4.7.3"
+		"web3modal": "^1.9.12"
 	},
 	"devDependencies": {
 		"@nomicfoundation/hardhat-toolbox": "^1.0.2",

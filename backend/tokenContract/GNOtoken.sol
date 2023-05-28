@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.9;
+pragma solidity ^0.7.6;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/access/AccessControl.sol";
@@ -10,7 +10,7 @@ import "@openzeppelin/contracts/token/ERC20/extensions/ERC20FlashMint.sol";
 contract GNOtoken is ERC20, AccessControl, ERC20Permit, ERC20Votes, ERC20FlashMint {
     bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
 
-    constructor() ERC20("GNOtoken", "GNOF") ERC20Permit("GNOtoken") {
+    constructor() ERC20("GNOFinance Token", "GNOF") ERC20Permit("GNOFinance Token") {
         _grantRole(DEFAULT_ADMIN_ROLE, msg.sender);
         _grantRole(MINTER_ROLE, msg.sender);
     }
