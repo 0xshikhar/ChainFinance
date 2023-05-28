@@ -1,6 +1,5 @@
 # GNOFinance Platform - Intersection of DeFi, CeFi and Traditional Banks
 
-[![](./images/gnof-1.png)]()
 
 ## 😃 Intro
 
@@ -18,13 +17,13 @@ First of all, Lets discuss about the most innovative feature of GNOFinance where
 
 ### Send Crypto to your Bank Account
 
-[![Send Self Bank Transfer](./images/gnof-account.png)]
+![Send Self Bank Transfer](./images/gnof-account.png)
 
 User can send crypto to their own bank account just by entering their IBAN number.
 
 ### Send Crypto Payment to Any Bank Account
 
-[![Send Normal Payment](./images/gnof-4.png)]
+![Send Normal Payment](./images/gnof-4.png)
 
 User can send crypto to any bank account in form of EURO and reciever will get it like normal bank payment.
 User can also enter the reason for payment like "Salary", "Rent", "Gift" etc. User need to enter Reciever bank details like IBAN, Reciever Name etc for sending payment. 
@@ -52,6 +51,8 @@ One of the primary features of GNOFinance is its DEX where users can swap one to
 
 `GNOFinance DEX - 0x085E9a646d5320C9333FD6F366DF6CcF5D84eAe4`
 
+![GNOFdex](./images/gnof-1.png)
+
 
 
 ## ⚗️ Liquidity Pools
@@ -64,8 +65,7 @@ Another key feature of GNOFinance is its liquidity pool creation functionality. 
 
 ---
 
-`
-tGNO token- 0x19C653Da7c37c66208fbfbE8908A5051B57b4C70
+`tGNO token- 0x19C653Da7c37c66208fbfbE8908A5051B57b4C70
 
 GNOF token - 0x5a9486D42644Ddc3550289C6B7e60b8a55A45db5
 
@@ -75,8 +75,7 @@ GDAI token = 0x227d00745cCB118Db8fAfaea118747f8a985A679
 
 WGDAI token = 0x4E1cbE750BD21466F9C552F1237E401ebf3c43eC
 
-GUSD token = 0xcFC0c8b2F01B655598587F0e48beb931616dCa26
-`
+GUSD token = 0xcFC0c8b2F01B655598587F0e48beb931616dCa26`
 
 
 ## 🥞 Staking
