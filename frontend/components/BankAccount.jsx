@@ -19,12 +19,20 @@ import cx from "classnames";
 const IbanBanner = () => {
 
     return (
-        <div className={cx("bg-secondary/20 px-4 py-4 gap-4 flex flex-col items-center")}>
+        <div className={cx("bg-yellow-100 rounded-lg px-4 align-center py-4 gap-4 flex flex-col items-center")}>
+            <div className='align-middle justify-center'>
+                <div className="text-center">
+                    Create an IBAN to obtain crypto by sending a bank transfer.
+                    IBAN.
+                </div>
+
+                <button className="text-black w-full bg-[#027DFC] hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"> Create IBAN
+                    </button>
+            </div>
             <div>
                 <div>Get crypto by sending a bank transfer to this IBAN</div>
                 <div className="text-center mt-2">
                     <div className="flex gap-2 items-center">
-                        <span className="font-bold text-xl">iban</span>
                         {/* <CopyButton
                             text={iban}
                             label="Copy"
@@ -39,15 +47,10 @@ const IbanBanner = () => {
                     rel="noreferrer"
                     className="mt-2"
                 >
-                    <Button>Send bank transfer</Button>
+                    <button className="text-black w-full bg-[#027DFC] hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"> Send bank transfer
+                    </button>
                 </a>
             </div>
-            <div className="text-center">
-                Create an IBAN to simplify your experience on Gumrua. As a buyer,
-                you can obtain crypto by simply sending a bank transfer to this
-                IBAN.
-            </div>
-            <Button >Create IBAN</Button>
         </div>
     )
 }
@@ -205,19 +208,18 @@ const BankAccount = () => {
                             <h2 className="text-base text-black py-2 pb-10 font-sans "> Fund Your Wallet Now</h2>
                         </div>
 
-                        <div className='bg-white text-black rounded-[16px] object-contain w-[400px] h-[400px] relative'>
+                        <div className='bg-white text-black rounded-[16px] object-contain w-[400px] h-[440px] relative'>
                             <div className="flex h-full items-center justify-center px-4 inset-x-0 bottom-0">
                                 <div className="w-full px-5">
-                                    <IbanBanner />
                                     {/*  */}
                                     <div>
                                         <div className='text-lg'>Token Balance</div>
                                         <TokenBalance />
                                     </div>
+                                    <div className='py-2'>
+                                    <IbanBanner />
 
-
-
-
+                                    </div>
                                 </div>
                             </div>
 
@@ -233,7 +235,7 @@ const BankAccount = () => {
                             <h2 className="text-base text-black py-2 pb-10 font-sans "> To Your Bank Account</h2>
                         </div>
 
-                        <div className='bg-white text-black rounded-[16px] object-contain w-[400px] h-[400px] relative'>
+                        <div className='bg-white text-black rounded-[16px] object-contain w-[400px] h-[440px] relative'>
                             <div className="flex h-full items-center justify-center px-4 inset-x-0 bottom-0">
                                 <div className="w-full px-5">
                                     {/* <IbanBanner /> */}
@@ -245,7 +247,7 @@ const BankAccount = () => {
                                                 <select
                                                     id="token"
                                                     name="token"
-                                                    className=" w-full rounded-md border-0 px-2 py-2.5 text-white focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                                                    className=" w-full  bg-gray-800 border border-gray-300 text-sm rounded-lg px-2 py-2.5 text-white focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
                                                 >
                                                     <option value="eure">EURe</option>
                                                     <option value="xdai">xDAI</option>
@@ -265,7 +267,8 @@ const BankAccount = () => {
                                         <div className="mb-4 m-1 text-sm">Token will be transferred as Euro on your Bank Account</div>
 
                                         <button type="submit" onClick={sendMoney}
-                                            className="text-white w-full bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Send Money</button>
+                                            className="text-white w-full bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Send Money
+                                        </button>
                                     </form>
 
 

@@ -130,8 +130,8 @@ const BankPay = () => {
         <div>
             <div className='flex justify-center align-center '>
 
-                <div className='flex mt-8 mx-8 pl-5 align-middle justify-center rounded'>
-                    <div className='bg-[#affc41] rounded-2xl'>
+                <div className='flex mt-8 mx-2 pl-5 align-middle justify-center rounded'>
+                    <div className='bg-[#affc41] rounded-2xl w-[800]'>
                         <div className='pt-4 px-4 rounded'>
                             <h1 className="text-4xl text-black pt-4">
                                 Send Crypto To Any Bank Account
@@ -139,13 +139,13 @@ const BankPay = () => {
                             <h2 className="text-base text-black py-2 pb-10 font-sans "> Pay Directly In Crypto For Rent, Shop, Payments etc.</h2>
                         </div>
 
-                        <div className='bg-white text-black rounded-[16px] object-contain w-[800px] h-[400px] relative'>
+                        <div className='bg-white text-black rounded-[16px] pb-4 first-line:object-contain w-[800px] h-[450px]'>
                             <div className="flex h-full items-center justify-center px-4 inset-x-0 bottom-0">
                                 <div className="w-full px-5">
                                     {/* <IbanBanner /> */}
-                                    <form>
-                                        <div className='flex align-middle justify-center'>
-                                            <div className='px-5'>
+                                    <form className='w-[800]'>
+                                        <div className='flex align-middle justify-center pb-5'>
+                                            <div className='px-2 w-[400px]'>
                                                 <div className="sm:col-span-3 mt-4">
                                                     <label htmlFor="tokens" className="block mb-2 text font-medium text-gray-900">Select Your Token</label>
 
@@ -153,7 +153,7 @@ const BankPay = () => {
                                                         <select
                                                             id="token"
                                                             name="token"
-                                                            className=" w-full rounded-md border-0 px-2 py-2.5 text-white focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                                                            className=" w-full  bg-gray-800 border border-gray-300 text-sm rounded-lg px-2 py-2.5 text-white focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
                                                         >
                                                             <option value="eure">EURe</option>
                                                             <option value="xdai">xDAI</option>
@@ -164,7 +164,8 @@ const BankPay = () => {
                                                 <div className="my-2">
                                                     <label htmlFor="text"
                                                         className="block mb-2 text font-medium text-gray-900"> First Name</label>
-                                                    <input type="text" id="input-recepient" onChange={(event) => { setFirstname(event.target.value) }} className="shadow-sm bg-gray-800 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Mark" required />
+                                                    <input type="text" id="input-recepient" onChange={(event) => { setFirstname(event.target.value) }} 
+                                                    className="shadow-sm bg-gray-800 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Mark" required />
                                                 </div>
                                                 <div className="my-2">
                                                     <label htmlFor="text"
@@ -179,7 +180,7 @@ const BankPay = () => {
                                                 </div>
 
                                             </div>
-                                            <div className='px-5'>
+                                            <div className='px-2  w-[400px]'>
                                                 <div className="my-2">
                                                     <label htmlFor="text"
                                                         className="block mb-2 text font-medium text-gray-900">  Message </label>

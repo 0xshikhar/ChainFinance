@@ -9,7 +9,6 @@ const NavItems = () => {
     const SWAP = "Swap";
     const POOL = "Pool";
     const VOTE = "Vote";
-    const CHART = "Charts";
     const BANK = "Bank";
 
     const [selectedNavItem, setSelectedNavItem] = useState(SWAP);
@@ -40,13 +39,6 @@ const NavItems = () => {
             >
                 {VOTE}
             </p>
-            <p
-                className={getNavIconClassName(CHART)}
-                onClick={() => window.open("https://info.uniswap.org/#/", "_blank")}
-            >
-                {CHART}
-                <BsArrowUpRight className="h-2 font-bold rotate-30" />
-            </p>
 
             <div
                 className={getNavIconClassName(BANK)}
@@ -57,7 +49,7 @@ const NavItems = () => {
             >
                 <div className="dropdown dropdown-hover">
                     <label tabIndex={0} className=""> {BANK}</label>
-                    <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+                    <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-black rounded-box w-52">
                         <li>
                             <a href="/bank/account">Account</a></li>
                         <li><a href="/bank/pay">Payment</a></li>
