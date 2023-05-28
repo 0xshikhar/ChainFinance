@@ -8,7 +8,6 @@ const NavItems = () => {
 
     const SWAP = "Swap";
     const POOL = "Pool";
-    const VOTE = "Vote";
     const BANK = "Bank Payment";
     const ACCOUNT = "Account"
 
@@ -34,12 +33,6 @@ const NavItems = () => {
                 {POOL}
             </p>
 
-            <p
-                className={getNavIconClassName(VOTE)}
-                onClick={() => setSelectedNavItem(VOTE)}
-            >
-                {VOTE}
-            </p>
 
             {/* <div
                 className={getNavIconClassName(BANK)}
