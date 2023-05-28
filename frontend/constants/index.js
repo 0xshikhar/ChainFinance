@@ -5,15 +5,15 @@ export const EURE_TOKEN_ADDRESS = {
     [gnosisChiado.id]: "0xb106ed7587365a16b6691a3D4B2A734f4E8268a2",
 };
 
-const DexConstants = {
-    initializing: "initializing",
-    unavailable: "unavailable",
-    notConnected: "notConnected",
-    connecting: "connecting",
-    connected: "connected",
-    nativeContractAddress: "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
-    allowance: "10000000000000000000000",
-    hyperspaceChainId: "3141"
-};
+// const DexConstants = {
+//     initializing: "initializing",
+//     unavailable: "unavailable",
+//     notConnected: "notConnected",
+//     connecting: "connecting",
+//     connected: "connected",
+//     nativeContractAddress: "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+//     allowance: "10000000000000000000000",
+//     hyperspaceChainId: "3141"
+// };
 
-export default DexConstants;
+// export default DexConstants;
