@@ -7,6 +7,7 @@ import { assetToImage, assetToName, symbolToCoingeckoId } from '../utils/misc';
 import { useRouter } from 'next/router';
 import { useNetwork } from 'wagmi';
 import { useEffect, useState } from 'react';
+import { BsFillArrowRightCircleFill } from 'react-icons/bs'
 
 const Container = styled.div`
 	background-color: #000000;
@@ -111,8 +112,7 @@ text-transparent xl:text-[4rem] md:text-5xl font-bold font-polySans md:max-w-5xl
 							<Link href="/swap">
 								<a className="inline-flex justify-center align-middle items-center p-5 text-sm font-medium text-center text-white bg-black rounded-lg hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
 									Swap Your Tokens
-									<svg aria-hidden="true" className="w-4 h-4 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-								</a>
+									<BsFillArrowRightCircleFill className="ml-3"/>							</a>
 							</Link>
 
 						</div>
@@ -127,14 +127,12 @@ text-transparent xl:text-[4rem] md:text-5xl font-bold font-polySans md:max-w-5xl
 							<Link href="/bank/transfer">
 								<a className="inline-flex justify-center align-middle items-center m-2 p-5 text-sm font-medium text-center text-white bg-black rounded-lg hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
 									Bank Transfer
-									<svg aria-hidden="true" className="w-4 h-4 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-								</a>
+									<BsFillArrowRightCircleFill className="ml-3"/>							</a>
 							</Link>
 							<Link href="/bank/payment">
 								<a className="inline-flex justify-center align-middle m-2 items-center p-5 text-sm font-medium text-center text-white bg-black rounded-lg hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
 									Fiat Payment
-									<svg aria-hidden="true" className="w-4 h-4 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-								</a>
+									<BsFillArrowRightCircleFill className="ml-3"/>							</a>
 							</Link>
 						</div>
 					</figure>
@@ -152,14 +150,12 @@ text-transparent xl:text-[4rem] md:text-5xl font-bold font-polySans md:max-w-5xl
 							<Link href="/bank/transfer">
 								<a className="inline-flex justify-center align-middle items-center m-2 p-5 text-sm font-medium text-center text-white bg-black rounded-lg hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
 									Create Market
-									<svg aria-hidden="true" className="w-4 h-4 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-								</a>
+									<BsFillArrowRightCircleFill className="ml-3"/>							</a>
 							</Link>
 							<Link href="/bank/payment">
 								<a className="inline-flex justify-center align-middle m-2 items-center p-5 text-sm font-medium text-center text-white bg-black rounded-lg hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
 									Take Market
-									<svg aria-hidden="true" className="w-4 h-4 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-								</a>
+									<BsFillArrowRightCircleFill className="ml-3"/>							</a>
 							</Link>
 
 						</div>
@@ -176,8 +172,7 @@ text-transparent xl:text-[4rem] md:text-5xl font-bold font-polySans md:max-w-5xl
 							<Link href="/bank/transfer">
 								<a className="inline-flex justify-center align-middle items-center m-2 p-5 text-sm font-medium text-center text-white bg-black rounded-lg hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
 									Liquidity
-									<svg aria-hidden="true" className="w-4 h-4 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-								</a>
+									<BsFillArrowRightCircleFill className="ml-3"/>							</a>
 							</Link>
 						</div>
 					</figure>
