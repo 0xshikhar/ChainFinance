@@ -31,7 +31,7 @@ const Header = () => {
 		<HeaderContainer>
 			<Title>
 				<Link href="/">
-					<a>p2ppredict</a>
+					<a className='font-extrabold text-transparent text-[32px] bg-clip-text  bg-gradient-to-r from-green-300 via-blue-500 to-purple-600'>Chain Finance</a>
 				</Link>
 				{!isSSR && (
 					<span>
@@ -115,9 +115,9 @@ const Title = styled.div`
 	align-items: center;
 
 	a {
-		color: ${({ theme }) => theme.colors.primary};
+		color: linear-gradient(to right, rgb(134, 239, 172), rgb(59, 130, 246), rgb(147, 51, 234)) ;
 		font-weight: 800;
-		font-size: ${({ theme }) => theme.typeScale.header2};
+		font-size: ${({ theme }) => theme.typeScale.header1};
 		span {
 			color: ${({ theme }) => theme.colors.secondary};
 		}

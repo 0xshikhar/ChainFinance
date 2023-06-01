@@ -2,11 +2,8 @@
 pragma solidity ^0.8.13;
 
 import {Exchange} from "./Exchange.sol";
-
-// import "openzeppelin-contracts/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@chainlink/contracts/src/v0.8/interfaces/AggregatorInterface.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
-// import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 
 
 import {OrderTypes} from "./libraries/OrderTypes.sol";
@@ -15,9 +12,6 @@ interface IExchange {
     function createMakerAsk(OrderTypes.MakerOrder calldata makerAsk) external;
 }
 
-/// @title Prediction Market
-/// @notice An MVP for a prediction market made for the polygon hackathon summer 2022
-/// @notice The contract is not gas-optimized and NOT audited, so expect some bugs
 contract PredictionMarket is ERC721URIStorage {
     address public deployer;
     address public exchangeAddress;
@@ -53,7 +47,7 @@ contract PredictionMarket is ERC721URIStorage {
         uint256 underPredictionId
     );
 
-    constructor() ERC721("p2ppredict", "p2p") {
+    constructor() ERC721("Chain Finance", "p2p") {
         deployer = msg.sender;
         currentMarketId = 0;
         currentPredictionId = 0;

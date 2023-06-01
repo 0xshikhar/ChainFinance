@@ -139,7 +139,7 @@ const generateMetadata = (market: Market, overSVGURI: string, underSVGURI: strin
 	let chainName = activeChain === 'rinkeby' ? 'Rinkeby' : activeChain === 'maticmum' ? 'Mumbai' : 'Polygon';
 
 	const overMetadata = {
-		description: `A prediction on p2ppredict.xyz regarding the value of ${asset}`,
+		description: `A prediction on Chain Finance.xyz regarding the value of ${asset}`,
 		name: `OVER ${asset}/USD`,
 		image: overSVGURI,
 		attributes: [
@@ -171,7 +171,7 @@ const generateMetadata = (market: Market, overSVGURI: string, underSVGURI: strin
 	};
 
 	const underMetadata = {
-		description: `A prediction on p2ppredict.xyz regarding the value of ${asset}`,
+		description: `A prediction on Chain Finance.xyz regarding the value of ${asset}`,
 		name: `UNDER ${asset}/USD`,
 		image: underSVGURI,
 		attributes: [

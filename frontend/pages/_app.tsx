@@ -12,13 +12,15 @@ import { blackTheme, GlobalStyle } from '../design/themes';
 import Layout from '../components/Layout';
 import Head from 'next/head';
 
+import '../style/global.css'
+
 const { chains, provider } = configureChains(
-	[chain.polygon, chain.polygonMumbai, chain.rinkeby],
+	[chain.mainnet, chain.goerli, chain.sepolia, chain.polygon, chain.polygonMumbai ],
 	[alchemyProvider(), publicProvider()]
 );
 
 const { connectors } = getDefaultWallets({
-	appName: 'p2ppredict',
+	appName: 'Chain Finance',
 	chains,
 });
 
@@ -36,8 +38,8 @@ function MyApp({ Component, pageProps }: AppProps) {
 			<GlobalStyle />
 			<QueryClientProvider client={queryClient}>
 				<Head>
-					<title>p2ppredict</title>
-					<meta property="og:title" content="p2ppredict" key="title" />
+					<title>Chain Finance</title>
+					<meta property="og:title" content="Chain Finance" key="title" />
 				</Head>
 				<WagmiConfig client={wagmiClient}>
 					<RainbowKitProvider

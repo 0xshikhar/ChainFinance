@@ -1,16 +1,11 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.13;
 
-// import {IERC721} from "openzeppelin-contracts/contracts/token/ERC721/IERC721.sol";
-// import {ERC721} from "openzeppelin-contracts/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 
 import {OrderTypes} from "./libraries/OrderTypes.sol";
 
-/// @title Exchange
-/// @notice An MVP for a prediction market made for the polygon hackathon summer 2022
-/// @notice The contract is not gas-optimized and NOT audited, so expect some bugs
 contract Exchange {
     address public deployer;
     address public predictionMarketAddress;
