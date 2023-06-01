@@ -25,6 +25,11 @@ module.exports = {
 			accounts: [`${process.env.PRIVATE_KEY}`],
 			url: `https://eth-sepolia.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`
 		},
+		mumbai: {
+			accounts: [`${process.env.PRIVATE_KEY}`],
+			url: "https://polygon-mumbai.g.alchemy.com/v2/vG6GH-5Gha7RcZ6hKud-oyraJ8aTyUxB",
+			
+		},
 	},
 	etherscan: {
 		apiKey: `${process.env.ETHERSCAN_API_KEY}`
