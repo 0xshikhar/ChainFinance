@@ -129,7 +129,7 @@ text-transparent xl:text-[4rem] md:text-5xl font-bold font-polySans md:max-w-5xl
 									Bank Transfer
 									<BsFillArrowRightCircleFill className="ml-3"/>							</a>
 							</Link>
-							<Link href="/bank/payment">
+							<Link href="/bank/pay">
 								<a className="inline-flex justify-center align-middle m-2 items-center p-5 text-sm font-medium text-center text-white bg-black rounded-lg hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
 									Fiat Payment
 									<BsFillArrowRightCircleFill className="ml-3"/>							</a>
