@@ -5,7 +5,7 @@ import { assetToImage } from '../utils/misc';
 
 const isBlackAndWhite = (activeChain: string | undefined, symbol: string) => {
 	let colored: string[] = [];
-	if (activeChain === 'rinkeby') {
+	if (activeChain === 'sepolia') {
 		colored = ['eth', 'btc', 'matic', 'usdc', 'bnb', 'atom', 'link'];
 	} else if (activeChain === 'maticmum') {
 		colored = ['eth', 'btc', 'matic', 'usdc', 'usdt', 'dai'];

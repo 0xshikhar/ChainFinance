@@ -19,7 +19,7 @@ contract USDPriceConverter {
     AggregatorV3Interface internal priceFeedXtzUSD;
 
     /**
-     * Network: Rinkeby
+     * Network: sepolia
      * Aggregator: Eth, Ilv, Btc, Link, Ltc, Rep, Snx, Trx, Xau, Xrp, Zrx, Xag, Xtz / USD
      */
     constructor() {

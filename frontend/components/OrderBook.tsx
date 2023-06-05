@@ -36,7 +36,7 @@ export default function OrderBook({ market, setTxHash, setBuyInfo }: OrderBookPr
 		const takerBid: TakerBid = {
 			taker: address,
 			price: prediction.price,
-			collection: predictionMarketAddresses[activeChain ? activeChain : 'rinkeby'],
+			collection: predictionMarketAddresses[activeChain ? activeChain : 'sepolia'],
 			tokenId: prediction.id,
 		};
 
@@ -45,7 +45,7 @@ export default function OrderBook({ market, setTxHash, setBuyInfo }: OrderBookPr
 			const provider = new ethers.providers.Web3Provider(ethereum);
 			const signer = provider.getSigner();
 			const exchange = new ethers.Contract(
-				exchangeAddresses[activeChain ? activeChain : 'rinkeby'],
+				exchangeAddresses[activeChain ? activeChain : 'sepolia'],
 				Exchange.abi,
 				signer
 			);
@@ -79,7 +79,7 @@ export default function OrderBook({ market, setTxHash, setBuyInfo }: OrderBookPr
 		}
 	};
 
-	const collateralAsset = activeChain === 'rinkeby' ? 'ETH' : 'MATIC';
+	const collateralAsset = activeChain === 'sepolia' ? 'ETH' : 'MATIC';
 
 	return (
 		<>

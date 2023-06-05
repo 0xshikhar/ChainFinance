@@ -8,7 +8,7 @@ import { exchangeAddresses, predictionMarketAddresses } from '../utils/addresses
 declare var window: any;
 
 const rpcs: { [key: string]: string } = {
-	rinkeby: 'https://rpc.ankr.com/eth_rinkeby',
+	sepolia: 'https://rpc.ankr.com/eth_sepolia',
 	matic: 'https://polygon-mainnet.public.blastapi.io',
 	maticmum: 'https://polygon-testnet.public.blastapi.io',
 };
@@ -23,12 +23,12 @@ const fetcher = async (asset: string, activeAddress: string, activeChain: string
 	}
 
 	let predictionMarket = new ethers.Contract(
-		predictionMarketAddresses[activeChain ? activeChain : 'rinkeby'],
+		predictionMarketAddresses[activeChain ? activeChain : 'sepolia'],
 		PredictionMarket.abi,
 		provider
 	);
 	let exchange = new ethers.Contract(
-		exchangeAddresses[activeChain ? activeChain : 'rinkeby'],
+		exchangeAddresses[activeChain ? activeChain : 'sepolia'],
 		Exchange.abi,
 		provider
 	);

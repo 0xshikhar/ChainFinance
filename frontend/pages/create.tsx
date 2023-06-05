@@ -49,8 +49,8 @@ const Maker: NextPage = () => {
 	const [connectMessage, setConnectMessage] = useState('');
 
 	const explorer =
-		chain?.network === 'rinkeby'
-			? 'https://rinkeby.etherscan.io/tx'
+		chain?.network === 'sepolia'
+			? 'https://sepolia.etherscan.io/tx'
 			: chain?.network === 'maticmum'
 			? 'https://mumbai.polygonscan.com/tx'
 			: 'https://polygonscan.com/tx';

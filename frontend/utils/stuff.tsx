@@ -59,7 +59,7 @@ export const mumbaiOptions = [
 	},
 ];
 
-export const rinkebyOptions = [
+export const sepoliaOptions = [
 	{
 		value: 'matic',
 		label: (

@@ -75,7 +75,7 @@ export const symbolToCoingeckoId: { [key: string]: string } = {
 };
 
 export const symbolToPriceFeed: { [key: string]: { [key: string]: string } } = {
-	rinkeby: {
+	sepolia: {
 		eth: '0x8A753747A1Fa494EC906cE90E9f37563A8AF630e',
 		btc: '0xECe365B379E1dD183B20fc5f022230C044d51404',
 		bnb: '0xcf0f51ca2cDAecb464eeE4227f5295F2384F84ED',
@@ -130,7 +130,7 @@ export const symbolToPriceFeed: { [key: string]: { [key: string]: string } } = {
 };
 
 export const priceFeedToSymbol: { [key: string]: { [key: string]: string } } = {
-	rinkeby: {
+	sepolia: {
 		'0xECe365B379E1dD183B20fc5f022230C044d51404': 'btc',
 		'0x8A753747A1Fa494EC906cE90E9f37563A8AF630e': 'eth',
 		'0x7794ee502922e2b723432DDD852B3C30A911F021': 'matic',

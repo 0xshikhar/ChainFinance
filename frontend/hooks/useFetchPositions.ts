@@ -9,7 +9,7 @@ import { useAccount, useNetwork } from 'wagmi';
 import { exchangeAddresses, predictionMarketAddresses } from '../utils/addresses';
 
 const rpcs: { [key: string]: string } = {
-	rinkeby: 'https://rpc.ankr.com/eth_rinkeby',
+	sepolia: 'https://rpc.ankr.com/eth_sepolia',
 	matic: 'https://polygon-mainnet.public.blastapi.io',
 	maticmum: 'https://polygon-testnet.public.blastapi.io',
 };
@@ -34,12 +34,12 @@ const fetcher = async (address: string, activeChain: string) => {
 	const provider = ethers.getDefaultProvider(rpcs[activeChain]);
 
 	let predictionMarket = new ethers.Contract(
-		predictionMarketAddresses[activeChain ? activeChain : 'rinkeby'],
+		predictionMarketAddresses[activeChain ? activeChain : 'sepolia'],
 		PredictionMarket.abi,
 		provider
 	);
 	let exchange = new ethers.Contract(
-		exchangeAddresses[activeChain ? activeChain : 'rinkeby'],
+		exchangeAddresses[activeChain ? activeChain : 'sepolia'],
 		Exchange.abi,
 		provider
 	);

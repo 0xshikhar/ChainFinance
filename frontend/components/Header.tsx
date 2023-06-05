@@ -35,7 +35,7 @@ const Header = () => {
 				</Link>
 				{!isSSR && (
 					<span>
-						{chain?.network === 'rinkeby' ? 'rinkeby' : chain?.network === 'maticmum' ? 'mumbai' : ''}
+						{chain?.network === 'sepolia' ? 'sepolia' : chain?.network === 'maticmum' ? 'mumbai' : ''}
 					</span>
 				)}
 			</Title>

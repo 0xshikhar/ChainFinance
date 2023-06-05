@@ -71,8 +71,8 @@ const uploadMetadataToIpfs = async (overMetadata: any, underMetadata: any) => {
 
 const createSvg = (market: Market, activeChain: string): string[] => {
 	let asset = priceFeedToSymbol[activeChain][market.priceFeed].toUpperCase();
-	let collateralAsset = activeChain === 'rinkeby' ? 'ETH' : 'MATIC';
-	let chainName = activeChain === 'rinkeby' ? 'Rinkeby' : activeChain === 'maticmum' ? 'Mumbai' : 'Polygon';
+	let collateralAsset = activeChain === 'sepolia' ? 'ETH' : 'MATIC';
+	let chainName = activeChain === 'sepolia' ? 'sepolia' : activeChain === 'maticmum' ? 'Mumbai' : 'Polygon';
 	const overSVG = `
 	<svg
       width="350"
@@ -135,8 +135,8 @@ const createSvg = (market: Market, activeChain: string): string[] => {
 
 const generateMetadata = (market: Market, overSVGURI: string, underSVGURI: string, activeChain: string) => {
 	let asset = priceFeedToSymbol[activeChain][market.priceFeed].toUpperCase();
-	let collateralAsset = activeChain === 'rinkeby' ? 'ETH' : 'MATIC';
-	let chainName = activeChain === 'rinkeby' ? 'Rinkeby' : activeChain === 'maticmum' ? 'Mumbai' : 'Polygon';
+	let collateralAsset = activeChain === 'sepolia' ? 'ETH' : 'MATIC';
+	let chainName = activeChain === 'sepolia' ? 'sepolia' : activeChain === 'maticmum' ? 'Mumbai' : 'Polygon';
 
 	const overMetadata = {
 		description: `A prediction on Chain Finance.xyz regarding the value of ${asset}`,

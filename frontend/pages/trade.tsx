@@ -61,10 +61,10 @@ const Taker: NextPage = () => {
 		return parseFloat(odds).toFixed(2);
 	};
 
-	const collateralAsset = chain?.network === 'rinkeby' ? 'ETH' : 'MATIC';
+	const collateralAsset = chain?.network === 'sepolia' ? 'ETH' : 'MATIC';
 	const explorer =
-		chain?.network === 'rinkeby'
-			? 'https://rinkeby.etherscan.io/tx'
+		chain?.network === 'sepolia'
+			? 'https://sepolia.etherscan.io/tx'
 			: chain?.network === 'maticmum'
 			? 'https://mumbai.polygonscan.com/tx'
 			: 'https://polygonscan.com/tx';

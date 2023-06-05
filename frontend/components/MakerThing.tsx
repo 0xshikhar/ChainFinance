@@ -12,7 +12,7 @@ import { predictionMarketAddresses, exchangeAddresses } from '../utils/addresses
 import { useAccount, useContractRead, useContractWrite, usePrepareContractWrite, useNetwork, useBalance } from 'wagmi';
 import { createSvg, generateMetadata, uploadMetadataToIpfs, uploadSVGToIpfs } from '../utils/ipfs';
 import { Choices, Market } from '../types';
-import { rinkebyOptions, mumbaiOptions, polygonOptions } from '../utils/stuff';
+import { sepoliaOptions, mumbaiOptions, polygonOptions } from '../utils/stuff';
 
 declare var window: any;
 
@@ -126,18 +126,18 @@ const MakerThing = ({ asset, setAsset, setTxHash, setConnectMessage }: MakerThin
 	});
 
 	const { data: isApprovedForAll, refetch: refetchIsApprovedForAll } = useContractRead({
-		addressOrName: predictionMarketAddresses[activeChain ? activeChain : 'rinkeby'],
+		addressOrName: predictionMarketAddresses[activeChain ? activeChain : 'sepolia'],
 		contractInterface: PredictionMarket.abi,
 		functionName: 'isApprovedForAll',
-		args: [address, exchangeAddresses[activeChain ? activeChain : 'rinkeby']],
+		args: [address, exchangeAddresses[activeChain ? activeChain : 'sepolia']],
 		enabled: !!address && !!chain && !!activeChain,
 	});
 
 	const { config: setApprovalForAllConfig } = usePrepareContractWrite({
-		addressOrName: predictionMarketAddresses[activeChain ? activeChain : 'rinkeby'],
+		addressOrName: predictionMarketAddresses[activeChain ? activeChain : 'sepolia'],
 		contractInterface: PredictionMarket.abi,
 		functionName: 'setApprovalForAll',
-		args: [exchangeAddresses[activeChain ? activeChain : 'rinkeby'], true],
+		args: [exchangeAddresses[activeChain ? activeChain : 'sepolia'], true],
 	});
 
 	const { isLoading: setApprovalForAllIsLoading, write: writeSetApprovalForAll } = useContractWrite({
@@ -299,7 +299,7 @@ const MakerThing = ({ asset, setAsset, setTxHash, setConnectMessage }: MakerThin
 	};
 
 	const options =
-		activeChain === 'rinkeby' ? rinkebyOptions : activeChain === 'maticmum' ? mumbaiOptions : polygonOptions;
+		activeChain === 'sepolia' ? sepoliaOptions : activeChain === 'maticmum' ? mumbaiOptions : polygonOptions;
 
 	return (
 		<Container>
@@ -329,7 +329,7 @@ const MakerThing = ({ asset, setAsset, setTxHash, setConnectMessage }: MakerThin
 				</Header>
 				<SizeDiv>
 					<div className="inner-size">
-						<img src={assetToImage[activeChain === 'rinkeby' ? 'eth' : 'matic']} alt={`currency-logo`} />
+						<img src={assetToImage[activeChain === 'sepolia' ? 'eth' : 'matic']} alt={`currency-logo`} />
 						<div className="input-div">
 							<input type="number" value={positionSize} onChange={handlePositionSizeChange} />
 						</div>
@@ -378,7 +378,7 @@ const MakerThing = ({ asset, setAsset, setTxHash, setConnectMessage }: MakerThin
 					<div>
 						<p>Depositing</p>
 						<p>
-							{positionSize} {activeChain === 'rinkeby' ? 'ETH' : 'MATIC'}
+							{positionSize} {activeChain === 'sepolia' ? 'ETH' : 'MATIC'}
 						</p>
 					</div>
 					<div>
@@ -386,10 +386,10 @@ const MakerThing = ({ asset, setAsset, setTxHash, setConnectMessage }: MakerThin
 						<p>
 							{over
 								? `${(parseFloat(positionSize) / parseFloat(underOdds)).toFixed(4)} ${
-										activeChain === 'rinkeby' ? 'ETH' : 'MATIC'
+										activeChain === 'sepolia' ? 'ETH' : 'MATIC'
 								  }`
 								: `${(parseFloat(positionSize) / parseFloat(overOdds)).toFixed(4)} ${
-										activeChain === 'rinkeby' ? 'ETH' : 'MATIC'
+										activeChain === 'sepolia' ? 'ETH' : 'MATIC'
 								  }`}
 						</p>
 					</div>
@@ -400,11 +400,11 @@ const MakerThing = ({ asset, setAsset, setTxHash, setConnectMessage }: MakerThin
 								? `${(
 										parseFloat(positionSize) -
 										parseFloat(positionSize) / parseFloat(underOdds)
-								  ).toFixed(4)} ${activeChain === 'rinkeby' ? 'ETH' : 'MATIC'}`
+								  ).toFixed(4)} ${activeChain === 'sepolia' ? 'ETH' : 'MATIC'}`
 								: `${(
 										parseFloat(positionSize) -
 										parseFloat(positionSize) / parseFloat(overOdds)
-								  ).toFixed(4)} ${activeChain === 'rinkeby' ? 'ETH' : 'MATIC'}`}
+								  ).toFixed(4)} ${activeChain === 'sepolia' ? 'ETH' : 'MATIC'}`}
 						</p>
 					</div>
 					<div>
@@ -413,10 +413,10 @@ const MakerThing = ({ asset, setAsset, setTxHash, setConnectMessage }: MakerThin
 							{over
 								? `${parseFloat(positionSize)} + ${(
 										parseFloat(positionSize) / parseFloat(underOdds)
-								  ).toFixed(4)} ${activeChain === 'rinkeby' ? 'ETH' : 'MATIC'}`
+								  ).toFixed(4)} ${activeChain === 'sepolia' ? 'ETH' : 'MATIC'}`
 								: `${parseFloat(positionSize)} + ${(
 										parseFloat(positionSize) / parseFloat(overOdds)
-								  ).toFixed(4)} ${activeChain === 'rinkeby' ? 'ETH' : 'MATIC'}`}
+								  ).toFixed(4)} ${activeChain === 'sepolia' ? 'ETH' : 'MATIC'}`}
 						</p>
 					</div>
 					{setApprovalForAllIsLoading ? (

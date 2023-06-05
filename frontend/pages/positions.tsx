@@ -76,7 +76,7 @@ export default function PositionsPage() {
 			const provider = new ethers.providers.Web3Provider(ethereum);
 			const signer = provider.getSigner();
 			const predictionMarket = new ethers.Contract(
-				predictionMarketAddresses[activeChain ? activeChain : 'rinkeby'],
+				predictionMarketAddresses[activeChain ? activeChain : 'sepolia'],
 				PredictionMarket.abi,
 				signer
 			);
@@ -108,19 +108,19 @@ export default function PositionsPage() {
 		return now >= expiry;
 	};
 
-	const collateralAsset = chain?.network === 'rinkeby' ? 'ETH' : 'MATIC';
+	const collateralAsset = chain?.network === 'sepolia' ? 'ETH' : 'MATIC';
 	const explorer =
-		chain?.network === 'rinkeby'
-			? 'https://rinkeby.etherscan.io/tx'
+		chain?.network === 'sepolia'
+			? 'https://sepolia.etherscan.io/tx'
 			: chain?.network === 'maticmum'
 			? 'https://mumbai.polygonscan.com/tx'
 			: 'https://polygonscan.com/tx';
 
 	const marketplace =
-		chain?.network === 'rinkeby'
-			? `https://testnets.opensea.io/assets/rinkeby/${predictionMarketAddresses.rinkeby}`
+		chain?.network === 'sepolia'
+			? `https://testnets.opensea.io/assets/sepolia/${predictionMarketAddresses.sepolia}`
 			: chain?.network == 'maticmum'
-			? `https://testnets.opensea.io/assets/rinkeby/${predictionMarketAddresses.rinkeby}`
+			? `https://testnets.opensea.io/assets/sepolia/${predictionMarketAddresses.sepolia}`
 			: `https://opensea.io/assets/matic/${predictionMarketAddresses.matic}`;
 
 	return (

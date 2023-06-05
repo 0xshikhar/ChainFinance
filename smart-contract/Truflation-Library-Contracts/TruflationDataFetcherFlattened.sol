@@ -1307,7 +1307,7 @@ contract TruflationDataFetcher is ChainlinkClient, ConfirmedOwner, KeeperCompati
   bool runKeeper;
 
   /**
-    Network Details derived from Market.Chainlink Truflation Rinkeby
+    Network Details derived from Market.Chainlink Truflation sepolia
     https://market.link/nodes/969f6cd9-40f3-4dd6-aa02-4fa8c8421480/integrations
    */
 
