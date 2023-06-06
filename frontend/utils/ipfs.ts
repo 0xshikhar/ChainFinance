@@ -11,7 +11,7 @@ const ipfsAddOptions: any = {
 	hashAlg: 'sha2-256',
 };
 
-const auth = 'Basic ' + Buffer.from(process.env.ipfsProjectId + ':' + process.env.ipfsProjectSecret).toString('base64');
+const auth = 'Basic ' + Buffer.from(process.env.NEXT_PUBLIC_ipfsProjectId + ':' + process.env.NEXT_PUBLIC_ipfsProjectSecret).toString('base64');
 
 function ensureIpfsUriPrefix(cidOrURI: string) {
 	let uri = cidOrURI.toString();

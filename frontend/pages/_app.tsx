@@ -11,12 +11,14 @@ import { publicProvider } from 'wagmi/providers/public';
 import { blackTheme, GlobalStyle } from '../design/themes';
 import Layout from '../components/Layout';
 import Head from 'next/head';
+// import dotenv from 'dotenv';
+// dotenv.config();
 
 import '../style/global.css'
 
 const { chains, provider } = configureChains(
 	[chain.mainnet, chain.goerli, chain.sepolia, chain.polygon, chain.polygonMumbai ],
-	[alchemyProvider(), publicProvider()]
+	[alchemyProvider({ apiKey: process.env.NEXT_PUBLIC_ALCHEMY_API_KEY }), publicProvider()]
 );
 
 const { connectors } = getDefaultWallets({

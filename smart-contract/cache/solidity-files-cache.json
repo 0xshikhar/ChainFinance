@@ -737,8 +737,8 @@
       ]
     },
     "/Users/shikhar/Code/chainlink/ChainFinance/smart-contract/contracts/TruflationDataFetcher.sol": {
-      "lastModificationDate": 1686351864843,
-      "contentHash": "d5737879d41761760caa719e9c55c79b",
+      "lastModificationDate": 1686523679854,
+      "contentHash": "d0c6731813312f6aed5d7ea345ec4c4e",
       "sourceName": "contracts/TruflationDataFetcher.sol",
       "solcConfig": {
         "version": "0.8.13",
@@ -765,7 +765,6 @@
       },
       "imports": [
         "@chainlink/contracts/src/v0.8/ChainlinkClient.sol",
-        "@chainlink/contracts/src/v0.8/ConfirmedOwner.sol",
         "@chainlink/contracts/src/v0.8/KeeperCompatible.sol"
       ],
       "versionPragmas": [
@@ -1394,8 +1393,8 @@
       ]
     },
     "/Users/shikhar/Code/chainlink/ChainFinance/smart-contract/contracts/USDPriceConverter.sol": {
-      "lastModificationDate": 1686349609574,
-      "contentHash": "887a0361f1be243433210f9ba3c559c2",
+      "lastModificationDate": 1686356982204,
+      "contentHash": "23289bbdd51a97ef15fd139b9dbef1da",
       "sourceName": "contracts/USDPriceConverter.sol",
       "solcConfig": {
         "version": "0.8.13",

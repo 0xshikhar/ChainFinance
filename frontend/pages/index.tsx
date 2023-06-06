@@ -29,6 +29,7 @@ const Container = styled.div`
 `;
 
 const homepageAssetsSymbols = [
+	{ symbol: 'verse', mainnet: true, testnet: true, hide: false },
 	{ symbol: 'eth', mainnet: true, testnet: true, hide: false },
 	{ symbol: 'btc', mainnet: true, testnet: true, hide: false },
 	{ symbol: 'matic', mainnet: true, testnet: true, hide: false },
@@ -52,6 +53,7 @@ const homepageAssetsSymbols = [
 ];
 
 const homepageAssetsIds = [
+	symbolToCoingeckoId['verse'],
 	symbolToCoingeckoId['eth'],
 	symbolToCoingeckoId['btc'],
 	symbolToCoingeckoId['matic'],
@@ -93,6 +95,7 @@ const Home: NextPage = () => {
 	};
 
 	const [isSSR, setIsSSR] = useState(true);
+
 
 	useEffect(() => {
 		setIsSSR(false);
@@ -165,13 +168,14 @@ text-transparent xl:text-[4rem] md:text-5xl font-bold font-polySans md:max-w-5xl
 						<div className="text-center align-middle w-[600px] h-[400px] p-8 bg-purple-700 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
 							<div className="md:mt-4 md:mb-8 mb-4 md:pb-2 bg-gradient-to-r from-[#fff] via-[#fff]/80 to-[#9d9ea1]/50 bg-clip-text 
 text-transparent xl:text-[4rem] md:text-5xl font-bold font-polySans md:max-w-5xl text-center text-[22px] max-w-[575px]">
-								Liquidity Pool
+								Lottery Platform
 							</div>
 
-							<p className='text-white pb-5'> You can swap any token using Chain Finance DEX</p>
+							<p className='text-white pb-5'> It is a unique lottery generating platform built using **Space & Time** to create dynamic NFT for the winner users.
+							Winner will be selected on basis of closest bid of Prediction Market Value of Verse Token</p>
 							<Link href="/bank/transfer">
 								<a className="inline-flex justify-center align-middle items-center m-2 p-5 text-sm font-medium text-center text-white bg-black rounded-lg hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-									Liquidity
+									Try Your Luck 
 									<BsFillArrowRightCircleFill className="ml-3"/>							</a>
 							</Link>
 						</div>

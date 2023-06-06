@@ -9,6 +9,7 @@ export const timeWindowToNumber: { [key: string]: number } = {
 export const assets = [];
 
 export const assetToName: { [key: string]: string } = {
+	verse: 'Verse',
 	trx: 'Tron',
 	btc: 'Bitcoin',
 	jst: 'JustLend',
@@ -39,6 +40,7 @@ export const assetToName: { [key: string]: string } = {
 };
 
 export const symbolToCoingeckoId: { [key: string]: string } = {
+	verse: 'verse-bitcoin',
 	btc: 'bitcoin',
 	eth: 'ethereum',
 	bnb: 'binancecoin',
@@ -76,6 +78,7 @@ export const symbolToCoingeckoId: { [key: string]: string } = {
 
 export const symbolToPriceFeed: { [key: string]: { [key: string]: string } } = {
 	sepolia: {
+		verse: '0x8A753747A1Fa494EC906cE90E9f37563A8AF630e',
 		eth: '0x8A753747A1Fa494EC906cE90E9f37563A8AF630e',
 		btc: '0xECe365B379E1dD183B20fc5f022230C044d51404',
 		bnb: '0xcf0f51ca2cDAecb464eeE4227f5295F2384F84ED',
@@ -85,6 +88,7 @@ export const symbolToPriceFeed: { [key: string]: { [key: string]: string } } = {
 		usdc: '0xa24de01df22b63d23Ebc1882a5E3d4ec0d907bFB',
 	},
 	maticmum: {
+		verse: '0x249ca82617ec3dfb2589c4c17ab7ec9765350a18',
 		btc: '0x007A22900a3B98143368Bd5906f8E17e9867581b',
 		eth: '0x0715A7794a1dc8e42615F059dD6e406A6594651A',
 		matic: '0xd0D5e3DB44DE05E9F294BB0a3bEEaF030DE24Ada',
@@ -93,6 +97,7 @@ export const symbolToPriceFeed: { [key: string]: { [key: string]: string } } = {
 		dai: '0x0FCAa9c899EC5A91eBc3D5Dd869De833b06fB046',
 	},
 	matic: {
+		verse: '0x249ca82617ec3dfb2589c4c17ab7ec9765350a18',
 		aave: '0x72484B12719E23115761D5DA1646945632979bB6',
 		ada: '0x882554df528115a743c4537828DA8D5B58e52544',
 		algo: '0x03Bc6D9EFed65708D35fDaEfb25E87631a0a3437',
@@ -131,6 +136,7 @@ export const symbolToPriceFeed: { [key: string]: { [key: string]: string } } = {
 
 export const priceFeedToSymbol: { [key: string]: { [key: string]: string } } = {
 	sepolia: {
+		'0x029824aFf39438D0989124Aaf32e36d8bD9A2D34': 'verse',
 		'0xECe365B379E1dD183B20fc5f022230C044d51404': 'btc',
 		'0x8A753747A1Fa494EC906cE90E9f37563A8AF630e': 'eth',
 		'0x7794ee502922e2b723432DDD852B3C30A911F021': 'matic',
@@ -141,6 +147,7 @@ export const priceFeedToSymbol: { [key: string]: { [key: string]: string } } = {
 		'0xd8bD0a1cB028a31AA859A21A3758685a95dE4623': 'link',
 	},
 	maticmum: {
+		'0x029824aFf39438D0989124Aaf32e36d8bD9A2D34': 'verse',
 		'0x007A22900a3B98143368Bd5906f8E17e9867581b': 'btc',
 		'0x0715A7794a1dc8e42615F059dD6e406A6594651A': 'eth',
 		'0xd0D5e3DB44DE05E9F294BB0a3bEEaF030DE24Ada': 'matic',
@@ -149,6 +156,7 @@ export const priceFeedToSymbol: { [key: string]: { [key: string]: string } } = {
 		'0x92C09849638959196E976289418e5973CC96d645': 'usdt',
 	},
 	matic: {
+		'0x029824aFf39438D0989124Aaf32e36d8bD9A2D34': 'verse',
 		'0x72484B12719E23115761D5DA1646945632979bB6': 'aave',
 		'0x882554df528115a743c4537828DA8D5B58e52544': 'ada',
 		'0x03Bc6D9EFed65708D35fDaEfb25E87631a0a3437': 'algo',
@@ -186,6 +194,7 @@ export const priceFeedToSymbol: { [key: string]: { [key: string]: string } } = {
 };
 
 export const assetToImage: { [key: string]: string } = {
+	verse:'https://s3.coinmarketcap.com/static-gravity/image/78e699b46f1742919c102e9dcc8fa45b.png',
 	btc: 'https://cryptologos.cc/logos/bitcoin-btc-logo.svg?v=022',
 	eth: 'https://cryptologos.cc/logos/ethereum-eth-logo.svg?v=022',
 	matic: 'https://cryptologos.cc/logos/polygon-matic-logo.svg?v=022',
@@ -223,7 +232,7 @@ export const assetToImage: { [key: string]: string } = {
 	cake: 'https://cryptologos.cc/logos/pancakeswap-cake-logo.svg?v=022',
 	zec: 'https://cryptologos.cc/logos/zcash-zec-logo.svg?v=022',
 	amp: 'https://cryptologos.cc/logos/amp-amp-logo.svg?v=022',
-	'1inch': 'https://cryptologos.cc/logos/1inch-1inch-logo.svg?v=022',
+	linch : 'https://cryptologos.cc/logos/1inch-1inch-logo.svg?v=022',
 	kda: 'https://cryptologos.cc/logos/kadena-kda-logo.svg?v=022',
 	comp: 'https://cryptologos.cc/logos/compound-comp-logo.svg?v=022',
 	ankr: 'https://cryptologos.cc/logos/ankr-ankr-logo.svg?v=022',

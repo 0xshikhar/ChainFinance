@@ -43,7 +43,7 @@ const Container = styled.div`
 
 const Maker: NextPage = () => {
 	const { chain, chains } = useNetwork();
-	const [asset, setAsset] = useState('btc');
+	const [asset, setAsset] = useState('verse');
 	const asset1 = { symbol: 'usd', coingeckoId: 'usd' };
 	const [txHash, setTxHash] = useState('');
 	const [connectMessage, setConnectMessage] = useState('');
