@@ -12,15 +12,20 @@ import { ethers, BigNumber } from "ethers";
 
 
 const LotteryDetail = () => {
-    // const client = new MoneriumClient("sandbox");
-    const [client, setClient] = useState(null);
-
     const { chain } = useNetwork();
     const { address } = useAccount();
     const { signMessageAsync } = useSignMessage();
 
-    const [amount, setAmount] = useState("1");
-    const [iban, setIban] = useState("IS39 4980 5411 0230 0201 4720 37");
+    const [lotteryId, setLotteryId] = useState("0")
+	const [lotteryState, setLotteryState] = useState("0")
+	const [entranceFee, setEntranceFee] = useState("0")
+	const [currentPool, setCurrentPool] = useState("0")
+    const [numberOfTickets, setNumberOfTickets] = useState("0")
+    const [lotteryHistory, setLotteryHistory] = useState([])
+	const [players, setPlayers] = useState([])
+
+	const [inflationToday, setInflationToday] = useState(0);
+	const [status, setStatus] = useState('');
 
     
 
@@ -42,13 +47,10 @@ const LotteryDetail = () => {
                                     {/*  */}
                                     <div>
                                         <div className='text-lg'>Token Balance</div>
-                                        <BalanceBanner
-                                            daiBalance={daiBalance?.value || BigNumber.from(0)}
-                                            eureBalance={eureBalance?.value || BigNumber.from(0)}
-                                        />
+                                
                                     </div>
                                     <div className='py-2'>
-                                        <IbanBanner />
+                                      
 
                                     </div>
                                 </div>

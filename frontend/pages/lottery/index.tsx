@@ -1,11 +1,35 @@
 import LotteryDetail from '../../components/LotteryDetail'
+import { useState, useEffect } from 'react'
+import { getInflationIndex } from '../../utils/lotteryUtil';
+
 
 const LotteryPage = () => {
+    const [inflationToday, setInflationToday] = useState(0);
+    const [status, setStatus] = useState('');
+
+
+    useEffect(() => {
+        // init
+        getInflationToday();
+    }, [])
+
+    async function getInflationToday() {
+        const today = new Date().toJSON().slice(0, 10)
+        const inflation = await getInflationIndex(today)
+        //console.log(inflation);
+        setInflationToday(inflation.yearOverYearInflation)
+    }
 
     return (
         <div className=' h-screen bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-indigo-900 via-gray-900 to-black'>
             <div className=" w-screen items-center mb-10 pt-10 mt-10 md:mb-12 md:grid-cols-2 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-indigo-900 via-gray-900 to-black">
                 <figure className="flex flex-col items-center justify-center  p-5 m-5">
+
+                    <div className="w-full flex flex-row justify-center">
+                        <p className="bg-yellow-50 w-auto block my-8 leading-relaxed whitespace-pre-line text-black font-semibold px-4 py-2 rounded-full text-lg">
+                            TODAY'S TRUFLATION INDEX: {inflationToday.toFixed(3)} %
+                        </p>
+                    </div>
 
                     <div className="max-w-l p-10 align-middle text-center bg-purple-700 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                         <div>
