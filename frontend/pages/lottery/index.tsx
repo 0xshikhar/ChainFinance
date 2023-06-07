@@ -4,13 +4,13 @@ import { getInflationIndex } from '../../utils/lotteryUtil';
 
 
 const LotteryPage = () => {
-    const [inflationToday, setInflationToday] = useState(0);
+    const [inflationToday, setInflationToday] = useState("7.86");
     const [status, setStatus] = useState('');
 
 
     useEffect(() => {
         // init
-        getInflationToday();
+        // getInflationToday();
     }, [])
 
     async function getInflationToday() {
@@ -22,12 +22,12 @@ const LotteryPage = () => {
 
     return (
         <div className=' h-screen bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-indigo-900 via-gray-900 to-black'>
-            <div className=" w-screen items-center mb-10 pt-10 mt-10 md:mb-12 md:grid-cols-2 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-indigo-900 via-gray-900 to-black">
+            <div className=" w-screen items-center mb-10 pt-10 md:mb-12 md:grid-cols-2 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-indigo-900 via-gray-900 to-black">
                 <figure className="flex flex-col items-center justify-center  p-5 m-5">
 
                     <div className="w-full flex flex-row justify-center">
                         <p className="bg-yellow-50 w-auto block my-8 leading-relaxed whitespace-pre-line text-black font-semibold px-4 py-2 rounded-full text-lg">
-                            TODAY'S TRUFLATION INDEX: {inflationToday.toFixed(3)} %
+                            TODAY'S TRUFLATION INDEX: {inflationToday} %
                         </p>
                     </div>
 
@@ -47,9 +47,10 @@ const LotteryPage = () => {
                     </div>
 
                 </figure>
+                <LotteryDetail />
             </div>
 
-            <LotteryDetail />
+           
         </div>
     )
 }

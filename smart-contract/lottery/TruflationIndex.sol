@@ -19,13 +19,13 @@ contract TruflationTester is ChainlinkClient {
   address public chainlinkContract = 0x326C977E6efc84E512bB9C30f76E30c160eD06FB;
   address public oracleId = 0x17dED59fCd940F0a40462D52AAcD11493C6D8073;
   string public jobId = "e5b99e0a2f79402998187b11f37c56a6";
-  uint256 public fee = 10000000000000000; // 0.01 LINK;
+  uint256 public fee = 50000000000000000; // 0.01 LINK;
 
   constructor() {
     setChainlinkToken(chainlinkContract);
     owner = msg.sender;
   }
-   
+  
   function requestYoyInflation() public returns (bytes32 requestId) {
     Chainlink.Request memory req = buildChainlinkRequest(
       bytes32(bytes(jobId)),
@@ -35,6 +35,7 @@ contract TruflationTester is ChainlinkClient {
     req.add("service", "truflation/current");
     req.add("keypath", "yearOverYearInflation");
     req.add("abi", "json");
+    //  req.add("refundTo", Strings.toHexString(uint160(msg.sender), 20));
     return sendChainlinkRequestTo(oracleId, req, fee);
   }
 

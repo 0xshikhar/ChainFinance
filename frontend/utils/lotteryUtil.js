@@ -19,14 +19,15 @@ export const request = async ({ url, fname, method = 'GET', data = null, _baseUR
     })
         .then(response => response.data)
         .catch(err => {
-            const { message, response: { data, status } } = err;
+            const { message, response } = err;
             console.log(`request error in %c ${fname}`, 'font-weight:900');
+            console.log("lottery error", err);
             console.log(message);
             return { err: true, errmsg: message, ...data };
         })
 }
 
-export async function getInflationIndex(date = "2022-05-26") {
+export async function getInflationIndex(date = "2023-05-26") {
     const response = await request({
         _baseURL: "https://truflation-api.hydrogenx.tk",
         url: `/at-date?date=${date}&show-derivation=false`,

@@ -147,12 +147,12 @@ text-transparent xl:text-[4rem] md:text-5xl font-bold font-polySans md:max-w-5xl
 							<p className='text-white pb-5'>
 								Chain Finance Prediction Market is built on Ethereum Chain. At the moment the markets are for cryptocurrencies, but in the future they could be for anything. Everyone can create
 								markets, and everyone can take markets!								 </p>
-							<Link href="/bank/transfer">
+							<Link href="/create">
 								<a className="inline-flex justify-center align-middle items-center m-2 p-5 text-sm font-medium text-center text-white bg-black rounded-lg hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
 									Create Market
 									<BsFillArrowRightCircleFill className="ml-3"/>							</a>
 							</Link>
-							<Link href="/bank/payment">
+							<Link href="/trade">
 								<a className="inline-flex justify-center align-middle m-2 items-center p-5 text-sm font-medium text-center text-white bg-black rounded-lg hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
 									Take Market
 									<BsFillArrowRightCircleFill className="ml-3"/>							</a>
