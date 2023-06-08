@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic';
 
 import PriceChartContainer from '../components/Chart/PriceChartContainer';
 import Banner from '../components/Banner';
+
 import { FiExternalLink } from 'react-icons/fi';
 import { useNetwork } from 'wagmi';
 

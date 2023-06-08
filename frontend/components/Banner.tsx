@@ -1,56 +1,7 @@
+
 import { Dispatch, SetStateAction } from 'react';
-import styled from 'styled-components';
 import { useNetwork } from 'wagmi';
 import { assetToImage } from '../utils/misc';
-
-const isBlackAndWhite = (activeChain: string | undefined, symbol: string) => {
-	let colored: string[] = [];
-	if (activeChain === 'sepolia') {
-		colored = ['eth', 'btc', 'matic', 'usdc', 'bnb', 'atom', 'link'];
-	} else if (activeChain === 'maticmum') {
-		colored = ['eth', 'btc', 'matic', 'usdc', 'usdt', 'dai'];
-	} else {
-		colored = [
-			'aave',
-			'ada',
-			'algo',
-			'ape',
-			'avax',
-			'axs',
-			'bnb',
-			'btc',
-			'eth',
-			'busd',
-			'crv',
-			'dai',
-			'doge',
-			'dot',
-			'ftm',
-			'icp',
-			'link',
-			'ltc',
-			'matic',
-			'mkr',
-			'shib',
-			'snx',
-			'sol',
-			'sushi',
-			'trx',
-			'uni',
-			'usdc',
-			'usdt',
-			'vet',
-			'xmr',
-			'xtz',
-			'yfi',
-			'zec',
-		];
-	}
-	if (colored.includes(symbol)) {
-		return false;
-	}
-	return true;
-};
 
 export default function Banner({
 	bannerChoice,
@@ -67,6 +18,57 @@ export default function Banner({
 }) {
 	const { chain } = useNetwork();
 
+	const isBlackAndWhite = (activeChain: string | undefined, symbol: string) => {
+		let colored: string[] = [];
+		if (activeChain === 'sepolia') {
+			colored = ['eth', 'btc', 'matic', 'usdc', 'bnb', 'atom', 'link'];
+		} else if (activeChain === 'maticmum') {
+			colored = ['eth', 'btc', 'matic', 'usdc', 'usdt', 'dai'];
+		}
+		else {
+			colored = [
+				'verse',
+				'aave',
+				'ada',
+				'algo',
+				'ape',
+				'avax',
+				'axs',
+				'bnb',
+				'btc',
+				'eth',
+				'busd',
+				'crv',
+				'dai',
+				'doge',
+				'dot',
+				'ftm',
+				'icp',
+				'link',
+				'ltc',
+				'matic',
+				'mkr',
+				'shib',
+				'snx',
+				'sol',
+				'sushi',
+				'trx',
+				'uni',
+				'usdc',
+				'usdt',
+				'vet',
+				'xmr',
+				'xtz',
+				'yfi',
+				'zec',
+			];
+		}
+		if (colored.includes(symbol)) {
+			return false;
+		}
+		return true;
+	};
+
 	const handleBannerChange = (symbol: string) => {
 		if (isBlackAndWhite(chain?.network ? chain?.network : 'matic', symbol)) return;
 		setActive(0);
@@ -74,76 +76,28 @@ export default function Banner({
 	};
 
 	return (
-		<Container fullWidth={fullWidth}>
-			{Object.keys(assetToImage).map(symbol => {
-				return (
-					<BannerDiv
-						isBlackAndWhite={isBlackAndWhite(chain?.network, symbol)}
-						active={bannerChoice === symbol}
-						key={symbol}
-						onClick={() => handleBannerChange(symbol)}
-					>
-						<img src={assetToImage[symbol]} alt={`${symbol}-logo`} />
-					</BannerDiv>
-				);
-			})}
-		</Container>
+		<div className={`overflow-x-scroll ${fullWidth ? 'top-58.78px' : ''} sticky bg-gray-900 flex items-center px-1.2rem py-0.1rem`}>
+			{Object.keys(assetToImage).map((symbol) => (
+				// <div
+				// 	className={`px-0.8rem flex items-center justify-center border-b-3 ${bannerChoice === symbol ? 'border-primary' : 'border-gray-300'
+				// 		} ${isBlackAndWhite(chain?.network, symbol) ? '' : 'hover:border-primary cursor-pointer'}`}
+				// 	key={symbol}
+				// 	onClick={() => handleBannerChange(symbol)}
+				// >
+				<div key={symbol}
+					className={`flex-shrink-0 w-10 h-10 bg-black rounded-full flex items-center justify-center mx-2 first-letter
+							${isBlackAndWhite(chain?.network, symbol) ? '' : 'hover:border-primary cursor-pointer'}
+						`}
+					onClick={() => handleBannerChange(symbol)}
+				>
+					<img
+						className="h-28px w-28px"
+						src={assetToImage[symbol]}
+						alt={`${symbol}- logo`}
+						style={{ padding: "1px", objectFit: 'contain', filter: isBlackAndWhite(chain?.network, symbol) ? 'grayscale(100%)' : '' }}
+					/>
+				</div>
+			))}
+		</div>
 	);
 }
-
-const BannerDiv = styled.div<{ isBlackAndWhite: boolean; active: boolean }>`
-	padding: 0.8rem;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	border-bottom: 3px solid ${({ theme, active }) => (active ? theme.colors.primary : theme.colors.gray[300])};
-	:hover {
-		cursor: ${({ isBlackAndWhite }) => (isBlackAndWhite ? '' : 'pointer')};
-		border-bottom: 3px solid
-			${({ isBlackAndWhite, theme }) => (isBlackAndWhite ? theme.colors.gray[300] : theme.colors.primary)};
-	}
-	img {
-		height: 28px;
-		width: 28px;
-		filter: ${({ isBlackAndWhite }) => (isBlackAndWhite ? 'gray' : '')}; /* IE6-9 */
-		-webkit-filter: ${({ isBlackAndWhite }) =>
-			isBlackAndWhite ? 'grayscale(1)' : ''}; /* Google Chrome, Safari 6+ & Opera 15+ */
-		filter: ${({ isBlackAndWhite }) =>
-			isBlackAndWhite ? 'grayscale(1)' : ''}; /* Google Chrome, Safari 6+ & Opera 15+ */
-	}
-	p {
-		display: flex;
-		align-items: center;
-		height: 28px;
-		width: 108px;
-	}
-`;
-
-const Container = styled.div<{ fullWidth: boolean }>`
-	overflow-x: scroll;
-	top: ${({ fullWidth }) => (fullWidth ? '58.78px' : '')}; // do something better
-	position: sticky;
-	background-color: ${({ theme }) => theme.colors.gray[300]};
-	display: flex;
-	align-items: center;
-	padding: 0.1rem 1.2rem;
-
-	.logo {
-		padding: 0.8rem;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		border-bottom: 3px solid ${({ theme }) => theme.colors.gray[300]};
-
-		:hover {
-			cursor: pointer;
-			border-bottom: 3px solid ${({ theme }) => theme.colors.secondary};
-		}
-	}
-
-	.all {
-		p {
-			width: 108px;
-		}
-	}
-`;
