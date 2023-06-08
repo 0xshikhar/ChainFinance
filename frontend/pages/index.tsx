@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 import { useFetchPrices } from '../hooks/useFetchPrices';
 import { assetToImage, assetToName, symbolToCoingeckoId } from '../utils/misc';
+import { commodityToImage, commodityToName, commodityHomePageCurrentData, commodityHomePageYearData } from '../utils/marketData';
 import { useRouter } from 'next/router';
 import { useNetwork } from 'wagmi';
 import { useEffect, useState } from 'react';
@@ -51,6 +52,17 @@ const homepageAssetsSymbols = [
 	{ symbol: 'fil', mainnet: true, testnet: false, hide: true },
 	{ symbol: 'doge', mainnet: true, testnet: false, hide: true },
 ];
+
+const homepageCommoditySymbols = [
+	{ symbol: 'index', mainnet: true, testnet: true, hide: false },
+	{ symbol: 'food', mainnet: true, testnet: true, hide: false },
+	{ symbol: 'housing', mainnet: true, testnet: true, hide: false },
+	{ symbol: 'vehicle', mainnet: true, testnet: true, hide: false },
+	{ symbol: 'communication', mainnet: true, testnet: true, hide: false },
+	{ symbol: 'education', mainnet: true, testnet: true, hide: false },
+	{ symbol: 'ukindex', mainnet: true, testnet: true, hide: false },
+];
+
 
 const homepageAssetsIds = [
 	symbolToCoingeckoId['verse'],
@@ -115,7 +127,7 @@ text-transparent xl:text-[4rem] md:text-5xl font-bold font-polySans md:max-w-5xl
 							<Link href="/swap">
 								<a className="inline-flex justify-center align-middle items-center p-5 text-sm font-medium text-center text-white bg-black rounded-lg hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
 									Swap Your Tokens
-									<BsFillArrowRightCircleFill className="ml-3"/>							</a>
+									<BsFillArrowRightCircleFill className="ml-3" />							</a>
 							</Link>
 
 						</div>
@@ -130,12 +142,12 @@ text-transparent xl:text-[4rem] md:text-5xl font-bold font-polySans md:max-w-5xl
 							<Link href="/bank/transfer">
 								<a className="inline-flex justify-center align-middle items-center m-2 p-5 text-sm font-medium text-center text-white bg-black rounded-lg hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
 									Bank Transfer
-									<BsFillArrowRightCircleFill className="ml-3"/>							</a>
+									<BsFillArrowRightCircleFill className="ml-3" />							</a>
 							</Link>
 							<Link href="/bank/pay">
 								<a className="inline-flex justify-center align-middle m-2 items-center p-5 text-sm font-medium text-center text-white bg-black rounded-lg hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
 									Fiat Payment
-									<BsFillArrowRightCircleFill className="ml-3"/>							</a>
+									<BsFillArrowRightCircleFill className="ml-3" />							</a>
 							</Link>
 						</div>
 					</figure>
@@ -153,12 +165,12 @@ text-transparent xl:text-[4rem] md:text-5xl font-bold font-polySans md:max-w-5xl
 							<Link href="/create">
 								<a className="inline-flex justify-center align-middle items-center m-2 p-5 text-sm font-medium text-center text-white bg-black rounded-lg hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
 									Create Market
-									<BsFillArrowRightCircleFill className="ml-3"/>							</a>
+									<BsFillArrowRightCircleFill className="ml-3" />							</a>
 							</Link>
 							<Link href="/trade">
 								<a className="inline-flex justify-center align-middle m-2 items-center p-5 text-sm font-medium text-center text-white bg-black rounded-lg hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
 									Take Market
-									<BsFillArrowRightCircleFill className="ml-3"/>							</a>
+									<BsFillArrowRightCircleFill className="ml-3" />							</a>
 							</Link>
 
 						</div>
@@ -172,11 +184,11 @@ text-transparent xl:text-[4rem] md:text-5xl font-bold font-polySans md:max-w-5xl
 							</div>
 
 							<p className='text-white pb-5'> It is a unique lottery generating platform built using **Space & Time** to create dynamic NFT for the winner users.
-							Winner will be selected on basis of closest bid of Prediction Market Value of Verse Token</p>
+								Winner will be selected on basis of closest bid of Prediction Market Value of Verse Token</p>
 							<Link href="/bank/transfer">
 								<a className="inline-flex justify-center align-middle items-center m-2 p-5 text-sm font-medium text-center text-white bg-black rounded-lg hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-									Try Your Luck 
-									<BsFillArrowRightCircleFill className="ml-3"/>							</a>
+									Try Your Luck
+									<BsFillArrowRightCircleFill className="ml-3" />							</a>
 							</Link>
 						</div>
 					</figure>
@@ -222,6 +234,45 @@ text-transparent xl:text-[4rem] md:text-5xl font-bold font-polySans md:max-w-5xl
 											</p>
 										</>
 									)}
+								</div>
+							</Box>
+						);
+					})}
+				</Boxes>
+
+			</Container>
+
+			{/* for commodities and index */}
+			<Container>
+				<Boxes>
+					{homepageCommoditySymbols.map(commodity => {
+						return (
+							<Box
+								onClick={
+									() => handleClick(commodity.symbol)
+								}
+								key={commodity.symbol}
+								clickable={commodity.testnet || chain?.network === 'matic' || !chain}
+								hide={commodity.hide}
+							>
+								<div className="top">
+									<img src={commodityToImage[commodity.symbol]} alt={commodity.symbol} />
+									<div>
+										<p className="head">
+											{commodityToName[commodity.symbol]}
+											{!isSSR && chain?.network !== 'matic' && !commodity.testnet && chain ? (
+												<span>mainnet only</span>
+											) : null}
+										</p>
+										<p className="small">{commodity.symbol.toUpperCase()}</p>
+									</div>
+								</div>
+								<div className="bottom">
+									<p>{commodityHomePageCurrentData[commodity.symbol]}</p>
+									<p>
+										Y%:{' '}
+										{commodityHomePageYearData[commodity.symbol]}
+									</p>
 								</div>
 							</Box>
 						);
