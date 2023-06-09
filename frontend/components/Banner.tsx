@@ -16,8 +16,8 @@ export default function Banner({
 	setBannerChoice: Dispatch<SetStateAction<string>>;
 	setActive: Dispatch<SetStateAction<number>>;
 }) {
+	
 	const { chain } = useNetwork();
-
 	const isBlackAndWhite = (activeChain: string | undefined, symbol: string) => {
 		let colored: string[] = [];
 		if (activeChain === 'sepolia') {

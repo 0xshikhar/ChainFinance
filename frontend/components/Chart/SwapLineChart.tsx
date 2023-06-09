@@ -1,5 +1,6 @@
 import { useEffect, Dispatch, SetStateAction } from 'react';
 import { ResponsiveContainer, XAxis, YAxis, Tooltip, AreaChart, Area } from 'recharts';
+import { ValueType } from 'recharts/types/component/DefaultTooltipContent';
 
 enum PairDataTimeWindowEnum {
 	DAY,
@@ -8,6 +9,8 @@ enum PairDataTimeWindowEnum {
 	MONTHS,
 	YEAR,
 }
+// export declare type Formatter<TValue extends ValueType, TName extends NameType> = (value: TValue, name: TName, item: Payload<TValue, TName>, index: number, payload: Array<Payload<TValue, TName>>) => [TValue, TName] | TValue;
+
 
 export type SwapLineChartProps = {
 	data: { time: Date; value: number }[];
@@ -113,7 +116,7 @@ const LineChart = ({ data, setHoverValue, setHoverDate, isChangePositive, timeWi
 				<Tooltip
 					cursor={{ stroke: textDisabled }}
 					contentStyle={{ display: 'none' }}
-					formatter={(tooltipValue: any, name: any, props: any) => (
+					formatter={(tooltipValue: ValueType, name: string | number, props: Props) => (
 						<HoverUpdater
 							locale={locale}
 							payload={props.payload}
