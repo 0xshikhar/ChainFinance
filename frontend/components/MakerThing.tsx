@@ -41,7 +41,7 @@ const symbolToLabel: { [key: string]: JSX.Element } = {
 	),
 	eth: (
 		<StyledChoice>
-			<img src={assetToImage['eth']} alt="logo" />
+			<img src={assetToImage['verse']} alt="logo" />
 			<span>ETH</span>
 		</StyledChoice>
 	),
@@ -118,7 +118,7 @@ const MakerThing = ({ asset, setAsset, setTxHash, setConnectMessage }: MakerThin
 
 	const { address } = useAccount();
 	const { chain } = useNetwork();
-	const activeChain = chain?.network;
+	const activeChain = chain?.network; 
 
 	const { data: activeBalance } = useBalance({
 		addressOrName: address,
@@ -385,12 +385,10 @@ const MakerThing = ({ asset, setAsset, setTxHash, setConnectMessage }: MakerThin
 						<p>Listing {over ? 'UNDER' : 'OVER'} for</p>
 						<p>
 							{over
-								? `${(parseFloat(positionSize) / parseFloat(underOdds)).toFixed(4)} ${
-										activeChain === 'sepolia' ? 'ETH' : 'MATIC'
-								  }`
-								: `${(parseFloat(positionSize) / parseFloat(overOdds)).toFixed(4)} ${
-										activeChain === 'sepolia' ? 'ETH' : 'MATIC'
-								  }`}
+								? `${(parseFloat(positionSize) / parseFloat(underOdds)).toFixed(4)} ${activeChain === 'sepolia' ? 'ETH' : 'MATIC'
+								}`
+								: `${(parseFloat(positionSize) / parseFloat(overOdds)).toFixed(4)} ${activeChain === 'sepolia' ? 'ETH' : 'MATIC'
+								}`}
 						</p>
 					</div>
 					<div>
@@ -398,13 +396,13 @@ const MakerThing = ({ asset, setAsset, setTxHash, setConnectMessage }: MakerThin
 						<p>
 							{over
 								? `${(
-										parseFloat(positionSize) -
-										parseFloat(positionSize) / parseFloat(underOdds)
-								  ).toFixed(4)} ${activeChain === 'sepolia' ? 'ETH' : 'MATIC'}`
+									parseFloat(positionSize) -
+									parseFloat(positionSize) / parseFloat(underOdds)
+								).toFixed(4)} ${activeChain === 'sepolia' ? 'ETH' : 'MATIC'}`
 								: `${(
-										parseFloat(positionSize) -
-										parseFloat(positionSize) / parseFloat(overOdds)
-								  ).toFixed(4)} ${activeChain === 'sepolia' ? 'ETH' : 'MATIC'}`}
+									parseFloat(positionSize) -
+									parseFloat(positionSize) / parseFloat(overOdds)
+								).toFixed(4)} ${activeChain === 'sepolia' ? 'ETH' : 'MATIC'}`}
 						</p>
 					</div>
 					<div>
@@ -412,11 +410,11 @@ const MakerThing = ({ asset, setAsset, setTxHash, setConnectMessage }: MakerThin
 						<p>
 							{over
 								? `${parseFloat(positionSize)} + ${(
-										parseFloat(positionSize) / parseFloat(underOdds)
-								  ).toFixed(4)} ${activeChain === 'sepolia' ? 'ETH' : 'MATIC'}`
+									parseFloat(positionSize) / parseFloat(underOdds)
+								).toFixed(4)} ${activeChain === 'sepolia' ? 'ETH' : 'MATIC'}`
 								: `${parseFloat(positionSize)} + ${(
-										parseFloat(positionSize) / parseFloat(overOdds)
-								  ).toFixed(4)} ${activeChain === 'sepolia' ? 'ETH' : 'MATIC'}`}
+									parseFloat(positionSize) / parseFloat(overOdds)
+								).toFixed(4)} ${activeChain === 'sepolia' ? 'ETH' : 'MATIC'}`}
 						</p>
 					</div>
 					{setApprovalForAllIsLoading ? (

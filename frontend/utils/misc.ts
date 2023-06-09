@@ -1,3 +1,4 @@
+
 export const timeWindowToNumber: { [key: string]: number } = {
 	'24H': 0,
 	'1W': 1,
@@ -194,7 +195,7 @@ export const priceFeedToSymbol: { [key: string]: { [key: string]: string } } = {
 };
 
 export const assetToImage: { [key: string]: string } = {
-	verse:'https://s3.coinmarketcap.com/static-gravity/image/78e699b46f1742919c102e9dcc8fa45b.png',
+	verse: 'https://s3.coinmarketcap.com/static-gravity/image/78e699b46f1742919c102e9dcc8fa45b.png',
 	btc: 'https://cryptologos.cc/logos/bitcoin-btc-logo.svg?v=022',
 	eth: 'https://cryptologos.cc/logos/ethereum-eth-logo.svg?v=022',
 	matic: 'https://cryptologos.cc/logos/polygon-matic-logo.svg?v=022',
@@ -232,7 +233,7 @@ export const assetToImage: { [key: string]: string } = {
 	cake: 'https://cryptologos.cc/logos/pancakeswap-cake-logo.svg?v=022',
 	zec: 'https://cryptologos.cc/logos/zcash-zec-logo.svg?v=022',
 	amp: 'https://cryptologos.cc/logos/amp-amp-logo.svg?v=022',
-	linch : 'https://cryptologos.cc/logos/1inch-1inch-logo.svg?v=022',
+	linch: 'https://cryptologos.cc/logos/1inch-1inch-logo.svg?v=022',
 	kda: 'https://cryptologos.cc/logos/kadena-kda-logo.svg?v=022',
 	comp: 'https://cryptologos.cc/logos/compound-comp-logo.svg?v=022',
 	ankr: 'https://cryptologos.cc/logos/ankr-ankr-logo.svg?v=022',

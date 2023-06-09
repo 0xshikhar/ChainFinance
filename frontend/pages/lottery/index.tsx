@@ -48,9 +48,7 @@ const LotteryPage = () => {
 
                 </figure>
                 <LotteryDetail />
-            </div>
-
-           
+            </
         </div>
     )
 }

@@ -111,7 +111,6 @@ const LotteryDetail = () => {
                     </div>
                 </div>
             </div >
-
         </div >
 
     )

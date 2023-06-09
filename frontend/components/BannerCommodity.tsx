@@ -3,7 +3,7 @@ import { Dispatch, SetStateAction } from 'react';
 import { useNetwork } from 'wagmi';
 import { commodityToImage } from '../utils/marketData';
 
-export default function Banner({
+export default function BannerCommodity({
 	bannerChoice,
 	showAll,
 	fullWidth,
@@ -37,10 +37,10 @@ export default function Banner({
 	};
 
 	return (
-		<div className={`overflow-x-scroll ${fullWidth ? 'top-58.78px' : ''} sticky bg-gray-900 flex items-center px-1.2rem py-0.1rem`}>
+		<div className={`overflow-x-scroll ${fullWidth ? 'top-58.78px' : ''} sticky bg-[#151515] flex items-center px-1.2rem py-0.1rem`}>
 			{Object.keys(commodityToImage).map((symbol) => (
 				<div key={symbol}
-					className={`flex-shrink-0 w-10 h-10 bg-black rounded-full flex items-center justify-center mx-2 first-letter
+					className={`flex-shrink-0 w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center mx-2 first-letter
 						`}
 					onClick={() => handleBannerChange(symbol)}
 				>
@@ -48,7 +48,7 @@ export default function Banner({
 						className="h-28px w-28px"
 						src={commodityToImage[symbol]}
 						alt={`${symbol}- logo`}
-						style={{ padding: "1px", objectFit: 'contain'}}
+						style={{ padding: "2px", objectFit: 'contain'}}
 					/>
 				</div> 
 			))}

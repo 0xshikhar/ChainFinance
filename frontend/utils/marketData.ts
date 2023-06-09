@@ -6,20 +6,29 @@
 // education: '',
 // ukindex:''
 
+
+
 // export const commodityToImage: {} = {
 //     'https://cryptologos.cc/logos/bitcoin-btc-logo.svg?v=022'
 // }
 
+export const timeWindowToNumber: { [key: string]: number } = {
+	'24H': 0,
+	'1W': 1,
+	'1M': 2,
+	'3M': 3,
+	'1Y': 4,
+};
 
 export const commodityToImageDefault = 'https://truflation.com/_nuxt/usa-flag.fa372c9d.svg';
 
 export const commodityToImage: { [key: string]: string } = {
     index: 'https://truflation.com/_nuxt/usa-flag.fa372c9d.svg',
-    food: 'https://truflation.com/_nuxt/usa-flag.fa372c9d.svg',
-    housing: 'https://truflation.com/_nuxt/usa-flag.fa372c9d.svg',
-    vehicle: 'https://truflation.com/_nuxt/usa-flag.fa372c9d.svg',
-    communication: 'https://truflation.com/_nuxt/usa-flag.fa372c9d.svg',
-    education: 'https://truflation.com/_nuxt/usa-flag.fa372c9d.svg',
+    food: 'https://static.thenounproject.com/png/5794710-200.png',
+    housing: 'https://static.thenounproject.com/png/1711906-200.png',
+    vehicle: 'https://static.thenounproject.com/png/1004852-200.png',
+    communication: 'https://static.thenounproject.com/png/5790295-200.png',
+    education: 'https://static.thenounproject.com/png/3635847-200.png',
     ukindex: 'https://truflation.com/_nuxt/UK-icon.4580d4a7.svg'
 }
 
@@ -56,3 +65,5 @@ export const commodityHomePageYearData: { [key: string]: string } = {
     education: '0.79%',
     ukindex: '2.21%'
 }
+
+// export const symbolToPriceFeed

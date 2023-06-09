@@ -106,6 +106,10 @@ const Home: NextPage = () => {
 		router.push(`/trade?asset=${symbol}`);
 	};
 
+	const handleCommodityClick = (symbol: string) => {
+		router.push(`/commodity/trade?asset=${symbol}`);
+	};
+
 	const [isSSR, setIsSSR] = useState(true);
 
 
@@ -249,7 +253,7 @@ text-transparent xl:text-[4rem] md:text-5xl font-bold font-polySans md:max-w-5xl
 						return (
 							<Box
 								onClick={
-									() => handleClick(commodity.symbol)
+									() => handleCommodityClick(commodity.symbol)
 								}
 								key={commodity.symbol}
 								clickable={commodity.testnet || chain?.network === 'matic' || !chain}
