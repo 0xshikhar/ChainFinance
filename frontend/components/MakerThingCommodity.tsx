@@ -2,7 +2,8 @@ import { useState, Dispatch, SetStateAction } from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
 import Select from 'react-select';
-import { commodityToImage, commodityToName, commodityHomePageYearData, symbolToPriceFeed } from '../utils/marketData';
+import { commodityToImage, commodityToName, commodityHomePageYearData } from '../utils/marketData';
+// fetching default chain token data
 import { assetToImage } from '../utils/misc';
 
 import BannerCommodity from './BannerCommodity';
@@ -14,9 +15,11 @@ import { Spinner } from './Spinner';
 import { BiLinkExternal } from 'react-icons/bi';
 import { predictionMarketAddresses, exchangeAddresses } from '../utils/addresses';
 import { useAccount, useContractRead, useContractWrite, usePrepareContractWrite, useNetwork, useBalance } from 'wagmi';
-import { createSvg, generateMetadata, uploadMetadataToIpfs, uploadSVGToIpfs } from '../utils/ipfs';
+import { createSvg, generateMetadata, uploadMetadataToIpfs, uploadSVGToIpfs } from '../utils/ipfsCommodity';
 import { Choices, Market } from '../types';
 import { sepoliaOptions, mumbaiOptions, polygonOptions } from '../utils/stuff';
+
+import TruflationDataFetcher from './../abi/TruflationDataFetcher.json'
 
 declare var window: any;
 
@@ -96,13 +99,13 @@ const StyledSelect = styled(Select)`
 `;
 
 type MakerThingProps = {
-    asset: string;
+    commodity: string;
     setAsset: Dispatch<SetStateAction<string>>;
     setTxHash: Dispatch<SetStateAction<string>>;
     setConnectMessage: Dispatch<SetStateAction<string>>;
 };
 
-const MakerThing = ({ asset, setAsset, setTxHash, setConnectMessage }: MakerThingProps) => {
+const MakerThing = ({ commodity, setAsset, setTxHash, setConnectMessage }: MakerThingProps) => {
     const [over, setOver] = useState(true);
     const [positionSize, setPositionSize] = useState('0.001');
     const [strikePrice, setStrikePrice] = useState('0');
@@ -115,13 +118,14 @@ const MakerThing = ({ asset, setAsset, setTxHash, setConnectMessage }: MakerThin
     const [loadingButton, setLoadingButton] = useState(false);
 
     // create 6 state variable - index, food, housing, vehicle, communication, education, ukindex
-    const [indexPrice, setIndexPrice] = useState('0');
+    const [indexPrice, setIndexPrice] = useState('2.34');
     const [foodPrice, setFoodPrice] = useState('0');
     const [housingPrice, setHousingPrice] = useState('0');
     const [vehiclePrice, setVehiclePrice] = useState('0');
     const [communicationPrice, setCommunicationPrice] = useState('0');
     const [educationPrice, setEducationPrice] = useState('0');
     const [ukindexPrice, setUkindexPrice] = useState('0');
+    const [outputJSON, setOutputJSON] = useState({ currentInflationIndex: 142.11059189518483, yearAgoInflationIndex: 141.8816222424535, yearOverYearInflation: 0.9259493921056337 });
 
 
     const { address } = useAccount();
@@ -223,7 +227,7 @@ const MakerThing = ({ asset, setAsset, setTxHash, setConnectMessage }: MakerThin
     const createMarketWithPosition = async () => {
         if (!activeChain) return;
 
-        const priceFeed = symbolToPriceFeed[activeChain][asset];
+        const priceFeed = (outputJSON.currentInflationIndex).toString();
         if (!priceFeed) return;
 
         const DECIMALS = 18;
@@ -253,9 +257,9 @@ const MakerThing = ({ asset, setAsset, setTxHash, setConnectMessage }: MakerThin
         };
 
         // create svgs here and upload to ipfs
-        const [overSVG, underSVG] = createSvg(market, activeChain);
+        const [overSVG, underSVG] = createSvg(market, activeChain, priceFeed, commodity);
         const [overSVGURI, underSVGURI] = await uploadSVGToIpfs(overSVG, underSVG);
-        const [overMetadata, underMetadata] = generateMetadata(market, overSVGURI, underSVGURI, activeChain);
+        const [overMetadata, underMetadata] = generateMetadata(market, overSVGURI, underSVGURI, activeChain, priceFeed, commodity);
         const [overMetadataURI, underMetadataURI] = await uploadMetadataToIpfs(overMetadata, underMetadata);
 
         market.ipfsOver = overMetadataURI;
@@ -306,22 +310,127 @@ const MakerThing = ({ asset, setAsset, setTxHash, setConnectMessage }: MakerThin
         writeSetApprovalForAll?.();
     };
 
-    const fetchTruflationContractData = async (asset: string) => {
-        if (!activeChain) return;
+    const decodeTruflationData = (data: string) => {
+        console.log('decode data:', data)
+        const byteArray = hexStringToByteArray(data)
+        const string = new TextDecoder().decode(byteArray)
+        console.log('String text decoder', string)
+        const jsonData = JSON.parse(string)
+        console.log('String text decoder retval', jsonData)
+        setOutputJSON(jsonData);
+    }
 
-        if (asset == 'index') {
-            const { ethereum } = window;
-            if (ethereum) {
-                const provider = new ethers.providers.Web3Provider(ethereum);
-                const signer = provider.getSigner();
-                const truflation = new ethers.Contract(
-                    truflationAddresses[activeChain],
-                    Truflation.abi,
-                    signer
-                );
-                const index = await truflation.getIndex();
-                setIndex(index.toString());
+    const fetchTruflationContractData = async (commodity: string) => {
+        if (!activeChain) return (alert('Please Connect Your Wallet'), null);
+
+        var yoy = indexPrice;
+        var output;
+        const { ethereum } = window;
+
+        if (ethereum) {
+            const provider = new ethers.providers.Web3Provider(ethereum);
+            const signer = provider.getSigner();
+            const truflation = new ethers.Contract(
+                '0x97a0B606338e0aD0020ad8b9d83DB2A7cA3c9bc2',
+                TruflationDataFetcher,
+                signer
+            );
+
+            if (commodity == 'index') {
+                const indexr = await truflation.requestYoyInflation();
+                yoy = await truflation.yoyInflation();
+                console.log('index', indexr);
+                output = await decodeTruflationData(indexr);
+                console.log('yoy', yoy);
+                console.log('output', output);
             }
+            if (commodity == 'food') {
+                // enter data in order of service, data, keypath, abi, multiplier
+                const truflationObject = await truflation.doRequest(
+                    'truflation/current',
+                    '{"location":"us","categories":"true"}',
+                    'categories.Food & Non-alcoholic Beverages',
+                    'json',
+                    ''
+                )
+                console.log('truflationObject', truflationObject);
+                const resultBytes = await truflation.result();
+                console.log('resultBytes', resultBytes);
+                output = await decodeTruflationData(resultBytes);
+                console.log('output', output);
+            }
+            if (commodity == 'housing') {
+                const truflationObject = await truflation.doRequest(
+                    'truflation/current',
+                    '{"location":"us","categories":"true"}',
+                    'categories.Housing',
+                    'json',
+                    ''
+                )
+                console.log('truflationObject', truflationObject);
+                const resultBytes = await truflation.result();
+                console.log('resultBytes', resultBytes);
+                output = await decodeTruflationData(resultBytes);
+                console.log('output', output);
+            }
+            if (commodity == 'vehicle') {
+                const truflationObject = await truflation.doRequest(
+                    'truflation/current',
+                    '{"location":"us","categories":"true"}',
+                    'categories.Vehicle purchases (net outlay)',
+                    'json',
+                    ''
+                )
+                console.log('truflationObject', truflationObject);
+                const resultBytes = await truflation.result();
+                console.log('resultBytes', resultBytes);
+                output = await decodeTruflationData(resultBytes);
+                console.log('output', output);
+            }
+            if (commodity == 'communication') {
+                const truflationObject = await truflation.doRequest(
+                    'truflation/current',
+                    '{"location":"uk","categories":"true"}',
+                    'categories.Communications',
+                    'json',
+                    ''
+                )
+                console.log('truflationObject', truflationObject);
+                const resultBytes = await truflation.result();
+                console.log('resultBytes', resultBytes);
+                output = await decodeTruflationData(resultBytes);
+                console.log('output', output);
+            }
+            if (commodity == 'education') {
+                const truflationObject = await truflation.doRequest(
+                    'truflation/current',
+                    '{"location":"us","categories":"true"}',
+                    'categories.Education',
+                    'json',
+                    ''
+                )
+                console.log('truflationObject', truflationObject);
+                const resultBytes = await truflation.result();
+                console.log('resultBytes', resultBytes);
+                output = await decodeTruflationData(resultBytes);
+                console.log('output', output);
+            }
+            if(commodity == 'ukindex') {
+                const truflationObject = await truflation.doRequest(
+                    'truflation/current',
+                    '{"location":"uk"}',
+                    '',
+                    'json',
+                    ''
+                )
+                console.log('truflationObject', truflationObject);
+                const resultBytes = await truflation.result();
+                console.log('resultBytes', resultBytes);
+                output = await decodeTruflationData(resultBytes);
+                console.log('output', output);
+            }
+
+            setIndexPrice(yoy);
         }
     };
 
@@ -347,7 +456,7 @@ const MakerThing = ({ asset, setAsset, setTxHash, setConnectMessage }: MakerThin
                         <Thing>
                             <BannerCommodity
                                 showAll={false}
-                                bannerChoice={asset}
+                                bannerChoice={commodity}
                                 fullWidth={false}
                                 setBannerChoice={setAsset}
                                 setActive={() => { }}
@@ -355,33 +464,38 @@ const MakerThing = ({ asset, setAsset, setTxHash, setConnectMessage }: MakerThin
                             <SizeDiv>
                                 <div className="">
                                     <div className='flex w-full h-[80px]'>
-                                        <img className='bg-white p-0.5 h-28px w-28px rounded-xl ' src={commodityToImage[asset]} alt={`commodity-logo`} />
-                                        <div className='text-center px-4 text-[28px] '> {commodityToName[asset]}</div>
+                                        <img className='bg-white p-0.5 h-28px w-28px rounded-xl ' src={commodityToImage[commodity]} alt={`commodity-logo`} />
+                                        <div className='text-center px-4 text-[28px] '> {commodityToName[commodity]}</div>
                                     </div>
                                 </div>
                                 <div>
-                                    <div>Commodity Symbol : {asset.toUpperCase()}</div>
+                                    <div>Commodity Symbol : {commodity.toUpperCase()}</div>
                                 </div>
                             </SizeDiv>
-                            <MultiDiv>
-                                <div className="split top">
-                                    <div className="first">
-                                        <p> Current Percentage Rate: </p>
-                                        <div className='text-[24px] text-white'>{commodityHomePageYearData[asset]}</div>
-                                    </div>
+                            <div>
+                                <div className="p-4 align-middle justify-center">
+                                    <div className=''> Current Index Rate: </div>
+                                    <div className='text-[24px]  px-2 text-white '>{(outputJSON.currentInflationIndex).toFixed(6)} %</div>
                                 </div>
-                                <div className="split">
-                                    <div className="first">
+                                <div className="p-4 align-middle justify-center">
 
-                                        <p> Change in Year Percentage Rate: </p>
-                                        <div className='text-[24px] text-white'>{commodityHomePageYearData[asset]}</div>
-                                    </div>
+                                    <div> Last Year Index Rate: </div>
+                                    <div className='text-[24px] px-2 text-white'>{(outputJSON.yearAgoInflationIndex).toFixed(6)} %</div>
+
                                 </div>
-                            </MultiDiv>
+
+                                <div className="p-4 align-middle justify-center">
+
+                                    <div> Change in Year's Index Rate: </div>
+                                    <div className='text-[24px] px-2 text-white'>{(outputJSON.yearOverYearInflation).toFixed(6)} %</div>
+
+                                </div>
+                            </div>
                             <div className='text-sm text-gray-100'>
                                 Using Truflation Smart Contract to fetch Market Data in real time
                             </div>
-                            <button className='bg-white rounded p-4 text-black text-[18px]'>
+                            <button className='bg-white rounded p-4 text-black text-[18px]'
+                                onClick={() => fetchTruflationContractData(commodity)}>
                                 Refresh Data
                             </button>
                         </Thing>
@@ -389,20 +503,6 @@ const MakerThing = ({ asset, setAsset, setTxHash, setConnectMessage }: MakerThin
 
                     <figure className="flex flex-col items-center justify-center pt-10 ">
                         <Thing>
-                            <Header>
-                                <label>Asset:</label>
-                                <StyledSelect
-                                    defaultValue={{
-                                        label: symbolToLabel[asset],
-                                        value: asset,
-                                    }}
-                                    options={options}
-                                    styles={customStyles}
-                                    onChange={handleChange}
-                                    instanceId="yo"
-                                    autoFocus={true}
-                                />
-                            </Header>
                             <SizeDiv>
                                 <div className="inner-size">
                                     <img src={assetToImage[activeChain === 'sepolia' ? 'eth' : 'matic']} alt={`currency-logo`} />
@@ -446,7 +546,7 @@ const MakerThing = ({ asset, setAsset, setTxHash, setConnectMessage }: MakerThin
                             </ToggleDiv>
                             <LimitOrderDiv>
                                 <p>
-                                    Invalidate order if {asset.toUpperCase()} goes {over ? 'under' : 'over'}:
+                                    Invalidate order if {commodity.toUpperCase()} goes {over ? 'under' : 'over'}:
                                 </p>
                                 <input type="string" value={limitOrder} onChange={handleLimitOrderChange} />
                             </LimitOrderDiv>
@@ -510,9 +610,18 @@ const MakerThing = ({ asset, setAsset, setTxHash, setConnectMessage }: MakerThin
                                             <Spinner />
                                         </Button>
                                     ) : (
-                                        <Button type="button" l={false} onClick={createMarketWithPosition}>
-                                            CREATE MARKET
-                                        </Button>
+                                        <div className='flex w-full'>
+                                            <button className='bg-white rounded p-3 w-full mx-2 text-black text-[18px]'
+                                                onClick={() => fetchTruflationContractData(commodity)}>
+                                                Refresh Data
+                                            </button>
+                                            <button className='bg-[#7E22CD] rounded p-3 w-full text-white text-[18px]'
+                                                onClick={createMarketWithPosition}>
+                                                Create Market
+                                            </button>
+
+                                        </div>
+
                                     )}
                                 </>
                             </SummaryDiv>
@@ -525,6 +634,23 @@ const MakerThing = ({ asset, setAsset, setTxHash, setConnectMessage }: MakerThin
         </Container>
     );
 };
+
+function hexStringToByteArray(hexString: string) {
+    if (hexString.length % 2 !== 0) {
+        throw new Error('Must have an even number of hex digits to convert to bytes')
+    }
+    let numBytes = hexString.length / 2
+    let start = 0
+    if (hexString.substr(0, 2) === '0x') {
+        start = 1
+        numBytes = numBytes - 1
+    }
+    const byteArray = new Uint8Array(numBytes)
+    for (let i = start; i < numBytes + start; i++) {
+        byteArray[i - start] = parseInt(hexString.substr(i * 2, 2), 16)
+    }
+    return byteArray
+}
 
 const Container = styled.div`
                 display: flex;
@@ -639,7 +765,7 @@ const LimitOrderDiv = styled.div`
                 `;
 
 const CustomToggle = styled.div<{ over: boolean }>`
-                background-color: #dddddd;
+                background-color: #ffffff;
                 height: 40px;
                 width: 140px;
                 border-radius: 30px;

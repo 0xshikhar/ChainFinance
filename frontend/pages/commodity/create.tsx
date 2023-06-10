@@ -20,7 +20,7 @@ const Container = styled.div`
 
 const Maker: NextPage = () => {
 	const { chain, chains } = useNetwork();
-	const [asset, setAsset] = useState('index');
+	const [commodity, setCommodity ] = useState('index');
 	const asset1 = { symbol: 'usd', coingeckoId: 'usd' };
 	const [txHash, setTxHash] = useState('');
 	const [connectMessage, setConnectMessage] = useState('');
@@ -70,8 +70,8 @@ const Maker: NextPage = () => {
 					></PriceChartContainer>
 				</Left> */}
 				<MakerThing
-					asset={asset}
-					setAsset={setAsset}
+					commodity={commodity}
+					setAsset={setCommodity}
 					setTxHash={setTxHash}
 					setConnectMessage={setConnectMessage}
 				/>
