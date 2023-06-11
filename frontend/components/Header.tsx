@@ -16,10 +16,10 @@ const Header = () => {
 		router.asPath === '/trade'
 			? 'trade'
 			: router.asPath === '/create'
-			? 'create'
-			: router.asPath === '/positions'
-			? 'positions'
-			: '';
+				? 'create'
+				: router.asPath === '/positions'
+					? 'positions'
+					: '';
 
 	const [isSSR, setIsSSR] = useState(true);
 
@@ -40,21 +40,48 @@ const Header = () => {
 				)}
 			</Title>
 			<MenuContainer>
-				<Link href="/create">
-					<Actor isActive={page === 'create'}>
-						<a>create</a>
-					</Actor>
+
+
+
+				<Link href='/swap'>
+					<a className='text-white pt-6 px-2'>Swap</a>
 				</Link>
-				<Link href="/trade">
+				<div className='text-white pt-6 px-2'>
+					<div className="dropdown dropdown-hover">
+						<label tabIndex={0} className=""> Asset Market </label>
+						<ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-black rounded-box w-52">
+							<li><a href="/create">Create</a></li>
+							<li><a href="/trade">Trade</a></li>
+						</ul>
+					</div>
+				</div>
+				<div className='text-white pt-6 px-2'>
+					<div className="dropdown dropdown-hover">
+						<label tabIndex={0} className=""> Commodity Market </label>
+						<ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-black rounded-box w-52">
+							<li><a href="/commodity/create">Create</a></li>
+							<li><a href="/commodity/trade">Trade</a></li>
+						</ul>
+					</div>
+				</div>
+
+				{/* <Link href="/trade">
 					<Actor isActive={page === 'trade'}>
 						<a>trade</a>
 					</Actor>
-				</Link>
+				</Link> */}
 				<Link href="/positions">
-					<Actor isActive={page === 'positions'}>
-						<a>positions</a>
-					</Actor>
+					<a className='text-white pt-6 px-2'>Positions</a>
 				</Link>
+				<div className='text-white pt-6 px-2'>
+					<div className="dropdown dropdown-hover">
+						<label tabIndex={0} className=""> Bank </label>
+						<ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-black rounded-box w-52">
+							<li><a href="/bank/transfer">Account</a></li>
+							<li><a href="/bank/pay">Payment</a></li>
+						</ul>
+					</div>
+				</div>
 			</MenuContainer>
 			<ButtonContainer>
 				<ConnectButton

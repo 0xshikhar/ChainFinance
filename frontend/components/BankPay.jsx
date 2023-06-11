@@ -96,8 +96,8 @@ const BankPay = () => {
 
         try {
             const order = await client.placeOrder({
-                chain: "gnosis",
-                network: "chiado",
+                chain: "polygon",
+                network: "mumbai",
                 message: message,
                 signature: signature,
                 address: address,

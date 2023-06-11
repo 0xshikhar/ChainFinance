@@ -11,17 +11,19 @@ import { EURE_TOKEN_ADDRESS } from "../constants";
 import { ethers, BigNumber } from "ethers";
 import cx from "classnames";
 
-const BalanceBanner = ({ daiBalance, eureBalance }) => {
+const BalanceBanner = ({ maticBalance, usdeBalance }) => {
+    console.log("maticBalance", maticBalance);
+    console.log("usdeBalance", usdeBalance);
     return (
         <div className="bg-blue-100 rounded-xl  px-4 py-4 flex flex-col justify-center gap-4 mb-4">
             <div>
-                xDAI Balance:  {Number(ethers.utils.formatEther(daiBalance)).toPrecision(4)}
+                Matic Balance:  {Number(ethers.utils.formatEther(maticBalance)).toPrecision(4)}
             </div>
             <div>
-                EURe Balance:  {ethers.utils.formatEther(eureBalance)}
+                USDe Balance:  {ethers.utils.formatEther(usdeBalance)}
             </div>
             <div>
-                Ether Balance:  0.0
+                ETH Balance:  0.0
             </div>
         </div>
     );
@@ -82,8 +84,8 @@ const BankAccount = () => {
 
     const options = {};
 
-    const { data: eureBalance } = useBalance({ token: EURE_TOKEN_ADDRESS[chain?.id ?? 31337], address });
-    const { data: daiBalance } = useBalance({ address });
+    const { data: usdeBalance } = useBalance({ token: EURE_TOKEN_ADDRESS[chain?.id ?? 137], address });
+    const { data: maticBalance } = useBalance({ address });
 
 
 
@@ -131,8 +133,8 @@ const BankAccount = () => {
 
         try {
             const order = await client.placeOrder({
-                chain: "gnosis",
-                network: "chiado",
+                chain: "polygon",
+                network: "mumbai",
                 message: message,
                 signature: signature,
                 address: address,
@@ -177,8 +179,8 @@ const BankAccount = () => {
                                     <div>
                                         <div className='text-lg'>Token Balance</div>
                                         <BalanceBanner
-                                            daiBalance={daiBalance?.value || BigNumber.from(0)}
-                                            eureBalance={eureBalance?.value || BigNumber.from(0)}
+                                            maticBalance={maticBalance?.value || BigNumber.from(0)}
+                                            usdeBalance={usdeBalance?.value || BigNumber.from(0)}
                                         />
                                     </div>
                                     <div className='py-2'>
@@ -214,9 +216,9 @@ const BankAccount = () => {
                                                     name="token"
                                                     className=" w-full  bg-gray-800 border border-gray-300 text-sm rounded-lg px-2 py-2.5 text-white focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
                                                 >
-                                                    <option value="eure">EURe</option>
-                                                    <option value="xdai">xDAI</option>
-                                                    <option value="ether">Ether</option>
+                                                    <option value="usde">USDe</option>
+                                                    <option value="xdai">Matic</option>
+                                                    <option value="ether">ETH</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -227,7 +229,7 @@ const BankAccount = () => {
                                         </div>
                                         <div >
                                             <label htmlFor="tokens" className="block mb-2 text font-medium text-gray-900">Enter Amount</label>
-                                            <input type="text" onChange={(event) => { setAmount(event.target.value) }} id="input-amount" className="shadow-sm bg-gray-800 border border-gray-300 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="0 EURe" required />
+                                            <input type="text" onChange={(event) => { setAmount(event.target.value) }} id="input-amount" className="shadow-sm bg-gray-800 border border-gray-300 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="0 usde" required />
                                         </div>
                                         <div className="mb-4 m-1 text-sm">Token will be transferred as Euro on your Bank Account</div>
 

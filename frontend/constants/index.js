@@ -1,8 +1,9 @@
 import { polygonMumbai, sepolia, hardhat } from "wagmi/chains";
 
 export const EURE_TOKEN_ADDRESS = {
-    [polygonMumbai.id]: "0xb106ed7587365a16b6691a3D4B2A734f4E8268a2",
+    [polygonMumbai.id]: "0xcCA6b920eebFf5343cCCf386909Ec2D8Ba802bdd",
     [hardhat.id]: "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+    [sepolia.id]: "0xcCA6b920eebFf5343cCCf386909Ec2D8Ba802bdd",
 };
 
 // const DexConstants = {

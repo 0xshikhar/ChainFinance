@@ -148,7 +148,7 @@ export const priceFeedToSymbol: { [key: string]: { [key: string]: string } } = {
 		'0xd8bD0a1cB028a31AA859A21A3758685a95dE4623': 'link',
 	},
 	maticmum: {
-		'0x029824aFf39438D0989124Aaf32e36d8bD9A2D34': 'verse',
+		'0x0715A7794a1dc8e42615F059dD6e406A6594651b': 'verse',
 		'0x007A22900a3B98143368Bd5906f8E17e9867581b': 'btc',
 		'0x0715A7794a1dc8e42615F059dD6e406A6594651A': 'eth',
 		'0xd0D5e3DB44DE05E9F294BB0a3bEEaF030DE24Ada': 'matic',
@@ -157,7 +157,7 @@ export const priceFeedToSymbol: { [key: string]: { [key: string]: string } } = {
 		'0x92C09849638959196E976289418e5973CC96d645': 'usdt',
 	},
 	matic: {
-		'0x029824aFf39438D0989124Aaf32e36d8bD9A2D34': 'verse',
+		'0x0715A7794a1dc8e42615F059dD6e406A6594651b': 'verse',
 		'0x72484B12719E23115761D5DA1646945632979bB6': 'aave',
 		'0x882554df528115a743c4537828DA8D5B58e52544': 'ada',
 		'0x03Bc6D9EFed65708D35fDaEfb25E87631a0a3437': 'algo',
