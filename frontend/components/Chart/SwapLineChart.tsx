@@ -116,7 +116,8 @@ const LineChart = ({ data, setHoverValue, setHoverDate, isChangePositive, timeWi
 				<Tooltip
 					cursor={{ stroke: textDisabled }}
 					contentStyle={{ display: 'none' }}
-					formatter={(tooltipValue: ValueType, name: string | number, props: Props) => (
+					formatter={(props:) => (
+					// formatter={(tooltipValue: ValueType, name: string | number, props: Props) => (
 						<HoverUpdater
 							locale={locale}
 							payload={props.payload}
